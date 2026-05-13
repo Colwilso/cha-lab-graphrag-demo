@@ -56,7 +56,9 @@ const createSigmaSettings = (isDarkTheme: boolean): Partial<SigmaSettings> => ({
     attribute: 'labelColor'
   },
   edgeLabelSize: 8,
-  labelSize: 12
+  labelSize: 12,
+  defaultEdgeColor: isDarkTheme ? 'rgba(136, 136, 136, 0.12)' : 'rgba(180, 180, 180, 0.2)',
+  zoomToSizeRatioFunction: (r: number) => Math.pow(r, 0.3)
   // minEdgeThickness: 2
   // labelFont: 'Lato, sans-serif'
 })

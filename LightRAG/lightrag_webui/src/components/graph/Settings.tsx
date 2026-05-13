@@ -406,6 +406,23 @@ export default function Settings() {
               defaultValue={15}
               onEditFinished={setGraphLayoutMaxIterations}
             />
+            <div className="flex flex-col gap-1">
+              <label className="text-sm leading-none font-medium">Node Sizing</label>
+              <select
+                className="rounded border bg-background px-2 py-1 text-xs"
+                value={useSettingsStore.getState().nodeSizingMetric}
+                onChange={(e) => {
+                  useSettingsStore.getState().setNodeSizingMetric(e.target.value as any)
+                  useGraphStore.getState().setGraphDataFetchAttempted(false)
+                  useGraphStore.getState().incrementGraphDataVersion()
+                }}
+              >
+                <option value="degree">Degree (connections)</option>
+                <option value="pagerank">PageRank (importance)</option>
+                <option value="betweenness">Betweenness (bridge nodes)</option>
+                <option value="eigenvector">Eigenvector (neighborhood quality)</option>
+              </select>
+            </div>
             {/* Development/Testing Section - Only visible in development mode */}
             {import.meta.env.DEV && (
               <>

@@ -15,7 +15,7 @@ export const nodeColorDisabled = '#E2E2E2'
 export const nodeBorderColor = '#EEEEEE'
 export const nodeBorderColorSelected = '#F57F17'
 
-export const edgeColorDarkTheme = '#888888'
+export const edgeColorDarkTheme = 'rgba(136, 136, 136, 0.12)'
 export const edgeColorSelected = '#F57F17'
 export const edgeColorHighlightedDarkTheme = '#F57F17'
 export const edgeColorHighlightedLightTheme = '#F57F17'

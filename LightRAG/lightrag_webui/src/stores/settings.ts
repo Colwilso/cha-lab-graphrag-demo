@@ -52,6 +52,9 @@ interface SettingsState {
   graphLayoutMaxIterations: number
   setGraphLayoutMaxIterations: (iterations: number) => void
 
+  nodeSizingMetric: 'degree' | 'pagerank' | 'betweenness' | 'eigenvector'
+  setNodeSizingMetric: (metric: 'degree' | 'pagerank' | 'betweenness' | 'eigenvector') => void
+
   // Retrieval settings
   queryLabel: string
   setQueryLabel: (queryLabel: string) => void
@@ -100,13 +103,14 @@ const useSettingsStoreBase = create<SettingsState>()(
       enableHideUnselectedEdges: true,
       enableEdgeEvents: false,
 
-      minEdgeSize: 1,
-      maxEdgeSize: 1,
+      minEdgeSize: 0.3,
+      maxEdgeSize: 0.5,
 
       graphQueryMaxDepth: 2,
       graphMaxNodes: 30,
       backendMaxGraphNodes: null,
       graphLayoutMaxIterations: 30,
+      nodeSizingMetric: 'pagerank' as const,
 
       queryLabel: defaultQueryLabel,
 
@@ -146,6 +150,8 @@ const useSettingsStoreBase = create<SettingsState>()(
         set({
           graphLayoutMaxIterations: iterations
         }),
+      setNodeSizingMetric: (metric: 'degree' | 'pagerank' | 'betweenness' | 'eigenvector') =>
+        set({ nodeSizingMetric: metric }),
 
       setQueryLabel: (queryLabel: string) =>
         set({

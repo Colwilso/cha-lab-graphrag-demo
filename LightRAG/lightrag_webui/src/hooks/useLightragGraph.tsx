@@ -147,20 +147,30 @@ const fetchGraph = async (label: string, maxDepth: number, maxNodes: number) => 
       }
     }
 
-    // generate node size
-    let minDegree = Number.MAX_SAFE_INTEGER
-    let maxDegree = 0
+    // generate node size based on selected metric
+    const sizingMetric = useSettingsStore.getState().nodeSizingMetric || 'degree'
+
+    const getNodeMetricValue = (node: any): number => {
+      if (sizingMetric === 'degree') return node.degree
+      const val = parseFloat(node.properties?.[sizingMetric] || '0')
+      return isNaN(val) ? 0 : val
+    }
+
+    let minVal = Number.MAX_SAFE_INTEGER
+    let maxVal = 0
 
     for (const node of rawData.nodes) {
-      minDegree = Math.min(minDegree, node.degree)
-      maxDegree = Math.max(maxDegree, node.degree)
+      const v = getNodeMetricValue(node)
+      minVal = Math.min(minVal, v)
+      maxVal = Math.max(maxVal, v)
     }
-    const range = maxDegree - minDegree
+    const range = maxVal - minVal
     if (range > 0) {
       const scale = Constants.maxNodeSize - Constants.minNodeSize
       for (const node of rawData.nodes) {
+        const v = getNodeMetricValue(node)
         node.size = Math.round(
-          Constants.minNodeSize + scale * Math.pow((node.degree - minDegree) / range, 0.5)
+          Constants.minNodeSize + scale * Math.pow((v - minVal) / range, 0.5)
         )
       }
     }
