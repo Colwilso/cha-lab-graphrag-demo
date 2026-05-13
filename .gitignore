@@ -1,0 +1,42 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# LightRAG working data - exclude large vector DBs and LLM cache (not needed to view graph)
+lightrag_workdir/vdb_*.json
+lightrag_workdir/kv_store_llm_response_cache.json
+lightrag_workdir/graph_chunk_entity_relation_v1.graphml
+
+# LightRAG repo - exclude bulk content we didn't modify
+LightRAG/tests/
+LightRAG/examples/
+LightRAG/docs/
+LightRAG/.github/
+LightRAG/.vscode/
+LightRAG/docker/
+LightRAG/lightrag_webui/node_modules/
+LightRAG/lightrag_webui/bun.lock
+LightRAG/lightrag/tools/
+LightRAG/Makefile
+LightRAG/Dockerfile*
+LightRAG/docker-compose*
+LightRAG/CLAUDE.md
+LightRAG/CONTRIBUTING.md
+LightRAG/LICENSE
+LightRAG/CHANGELOG.md
+LightRAG/README.md
+# LightRAG/lightrag/api/webui/assets/ -- included so demo works without rebuild
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Environment
+.env.local

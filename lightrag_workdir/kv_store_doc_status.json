@@ -1,0 +1,1310 @@
+{
+  "PMID_12917329_PMC180917.xml": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-bf89ad08d3f81ffe84c9bf7f208c604b"
+    ],
+    "content_summary": "Title: Members of the Large Maf Transcription Family Regulate Insulin Gene Transcription in Islet β Cells\n\nAbstract: The C1/RIPE3b1 (−118/−107 bp) binding factor regulates pancreatic-β-cell-specific and glucose-regulated transcription of the insulin ...",
+    "content_length": 4381,
+    "created_at": "2026-05-12T04:37:57.311116+00:00",
+    "updated_at": "2026-05-12T04:39:03.958322+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_233757_dba7c058",
+    "metadata": {
+      "processing_start_time": 1778560677,
+      "processing_end_time": 1778560743
+    }
+  },
+  "PMID_16580660_PMC2390934.xml": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-5d5e51c0312e54ad3757625ff1041f76",
+      "chunk-9be9ccd664fd4fe5abbfcfd1cdaf6d21"
+    ],
+    "content_summary": "Title: A switch from MafB to MafA expression accompanies differentiation to pancreatic β-cells\n\nAbstract: SummaryMajor insulin gene transcription factors, such as PDX-1 or NeuroD1, have equally important roles in pancreatic development and the differ...",
+    "content_length": 4852,
+    "created_at": "2026-05-12T04:39:03.967809+00:00",
+    "updated_at": "2026-05-12T04:39:59.978161+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_233903_46e87b61",
+    "metadata": {
+      "processing_start_time": 1778560743,
+      "processing_end_time": 1778560799
+    }
+  },
+  "PMID_18515495_PMC3787904.xml": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-9bec3f5c6cf93d2d763da970e02d0fc3"
+    ],
+    "content_summary": "Title: MafA is a dedicated activator of the insulin gene\n\nAbstract: As successful generation of insulin-producing cells could be used for diabetes treatment, a concerted effort is being made to understand the molecular programs underlying islet β-cel...",
+    "content_length": 4716,
+    "created_at": "2026-05-12T04:39:59.997343+00:00",
+    "updated_at": "2026-05-12T04:40:47.505358+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_233959_f3b53b9a",
+    "metadata": {
+      "processing_start_time": 1778560800,
+      "processing_end_time": 1778560847
+    }
+  },
+  "PMID_20627934_PMC3279542.xml": {
+    "status": "processed",
+    "chunks_count": 9,
+    "chunks_list": [
+      "chunk-b9ed09558012a9cb8eba4b1efe943943",
+      "chunk-9693157a2d458ecc8255c49ec77d95f8",
+      "chunk-ff8c5dc48dde6c3ccfdc01c9e025403d",
+      "chunk-41e9c4875e9ee2b378c620275d81fe7e",
+      "chunk-5f82db25373e25b34bbbcfebc1c0f861",
+      "chunk-dc7255d0eadb6b7f3a3a51c10b8ea742",
+      "chunk-e517ac1160d78d9b935ab9b9913bf46a",
+      "chunk-ddb7aaa2476f3163b5c3de684504f42b",
+      "chunk-1f7f8610c162035d52f2edbe846e8a97"
+    ],
+    "content_summary": "Title: MafA and MafB Regulate Genes Critical to β-Cells in a Unique Temporal Manner\n\nTitle: Development of the endocrine pancreas\n\nTitle: Signaling and transcriptional control of pancreatic organogenesis\n\nTitle: On the origin of the β cell\n\nTitle: Pr...",
+    "content_length": 37677,
+    "created_at": "2026-05-12T04:40:47.523294+00:00",
+    "updated_at": "2026-05-12T04:45:24.339038+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_234047_11f7d457",
+    "metadata": {
+      "processing_start_time": 1778560847,
+      "processing_end_time": 1778561124
+    }
+  },
+  "PMID_24520122_PMC4030115.xml": {
+    "status": "processed",
+    "chunks_count": 9,
+    "chunks_list": [
+      "chunk-3ecc1e3f157d04d78962c82537c6b7d9",
+      "chunk-7a87d40ff620e7f930f155b5dea286c8",
+      "chunk-207f97a443acec0faaf8f9f2d208e61f",
+      "chunk-a5af2ab88dac4e2b983a277be1a9c536",
+      "chunk-3ee443fb4c37f27d6895254d3f95c708",
+      "chunk-b158cd1c233246631a3b8f719a275f2f",
+      "chunk-94526413b6fbcf0ec99212789cec9eea",
+      "chunk-f67b6052ac2da6848aaabbd71f9d4d53",
+      "chunk-75261aabfd0eeb269665c62f36dfeb2e"
+    ],
+    "content_summary": "Title: The MafA Transcription Factor Becomes Essential to Islet β-Cells Soon After Birth\n\nTitle: Pancreas organogenesis: from bud to plexus to gland\n\nTitle: On the origin of the beta cell\n\nTitle: Signaling and transcriptional control of pancreatic or...",
+    "content_length": 37868,
+    "created_at": "2026-05-12T04:45:24.388497+00:00",
+    "updated_at": "2026-05-12T04:53:06.113221+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_234524_fe19bbe3",
+    "metadata": {
+      "processing_start_time": 1778561325,
+      "processing_end_time": 1778561586
+    }
+  },
+  "dup-ecf44dc6d07f20d63345bd85b6ffcd9c": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_12917329_PMC180917.xml",
+    "content_length": 4381,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T04:48:45.653763+00:00",
+    "updated_at": "2026-05-12T04:48:45.653765+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_234845_ef16645e",
+    "error_msg": "Content already exists. Original doc_id: PMID_12917329_PMC180917.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_12917329_PMC180917.xml",
+      "original_track_id": "insert_20260511_233757_dba7c058"
+    }
+  },
+  "dup-41d9e6267592c89e9a6cb47fc9078796": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_16580660_PMC2390934.xml",
+    "content_length": 4852,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T04:53:06.189922+00:00",
+    "updated_at": "2026-05-12T04:53:06.189924+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235306_9c65e3c6",
+    "error_msg": "Content already exists. Original doc_id: PMID_16580660_PMC2390934.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_16580660_PMC2390934.xml",
+      "original_track_id": "insert_20260511_233903_46e87b61"
+    }
+  },
+  "dup-8e6281d32ff4bfba74a90337268e6b4a": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_18515495_PMC3787904.xml",
+    "content_length": 4716,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T04:53:06.191204+00:00",
+    "updated_at": "2026-05-12T04:53:06.191205+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235306_604006a9",
+    "error_msg": "Content already exists. Original doc_id: PMID_18515495_PMC3787904.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_18515495_PMC3787904.xml",
+      "original_track_id": "insert_20260511_233959_f3b53b9a"
+    }
+  },
+  "dup-34cb1e012a7442a8cb20e097d8416364": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_20627934_PMC3279542.xml",
+    "content_length": 37677,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T04:53:06.192853+00:00",
+    "updated_at": "2026-05-12T04:53:06.192855+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235306_7a1a7485",
+    "error_msg": "Content already exists. Original doc_id: PMID_20627934_PMC3279542.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_20627934_PMC3279542.xml",
+      "original_track_id": "insert_20260511_234047_11f7d457"
+    }
+  },
+  "dup-9c5f6981c41f26e7b219fd411da6e892": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_24520122_PMC4030115.xml",
+    "content_length": 37868,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T04:53:06.194673+00:00",
+    "updated_at": "2026-05-12T04:53:06.194674+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235306_49e2d4a2",
+    "error_msg": "Content already exists. Original doc_id: PMID_24520122_PMC4030115.xml, Status: DocStatus.PROCESSED",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_24520122_PMC4030115.xml",
+      "original_track_id": "insert_20260511_234524_fe19bbe3"
+    }
+  },
+  "PMID_26554594_PMC4675799.xml": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-69365499ad956be649b962c79d46f483",
+      "chunk-16d80504f4958c0901c81febc8f5be6b"
+    ],
+    "content_summary": "Title: The MAFB transcription factor impacts islet α-cell function in rodents and represents a unique signature of primate islet β-cells\n\nAbstract: Analysis of MafB−/− mice has suggested that the MAFB transcription factor was essential to islet α- an...",
+    "content_length": 5216,
+    "created_at": "2026-05-12T04:53:06.196330+00:00",
+    "updated_at": "2026-05-12T04:54:00.304128+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235306_d374532a",
+    "metadata": {
+      "processing_start_time": 1778561586,
+      "processing_end_time": 1778561640
+    }
+  },
+  "PMID_29339498_PMC5798333.xml": {
+    "status": "processed",
+    "chunks_count": 8,
+    "chunks_list": [
+      "chunk-fffe587d9d8a94d6179115102ef90a2d",
+      "chunk-06849490a7a3c085d30a2a392584bd67",
+      "chunk-348e687c811009b30863b17f466ac662",
+      "chunk-71db066aa18a18c64b2b33ad26f7bfab",
+      "chunk-61ea436af2c14f0df238edb6a5db2bea",
+      "chunk-6854465a5ab40a3dbe223209e2c5cd66",
+      "chunk-e531f038e6fcc1cbb89c2336af984719",
+      "chunk-b65a0501c576270f0560dc1e4695ef2d"
+    ],
+    "content_summary": "Title: MafA is a key regulator of glucose-stimulated insulin secretion\n\nTitle: mafA, a novel member of the maf proto-oncogene family, displays developmental regulation and mitogenic capacity in avian neuroretina cells\n\nTitle: MafA has strong cell tra...",
+    "content_length": 37068,
+    "created_at": "2026-05-12T04:54:00.370363+00:00",
+    "updated_at": "2026-05-12T04:57:34.838576+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235400_83840f6c",
+    "metadata": {
+      "processing_start_time": 1778561640,
+      "processing_end_time": 1778561854
+    }
+  },
+  "PMID_30425060_PMC6341297.xml": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-78596a38854a9e8f2c4ef9c3dfcbbfbd",
+      "chunk-ce58659c3f3c09f29c6b681531495c7f"
+    ],
+    "content_summary": "Title: Examining How the MAFB Transcription Factor Affects Islet β-Cell Function Postnatally\n\nAbstract: The sustained expression of the MAFB transcription factor in human islet β-cells represents a distinct difference in mice. Moreover, mRNA expressi...",
+    "content_length": 5403,
+    "created_at": "2026-05-12T04:57:34.925468+00:00",
+    "updated_at": "2026-05-12T04:58:30.738710+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235734_823528d9",
+    "metadata": {
+      "processing_start_time": 1778561854,
+      "processing_end_time": 1778561910
+    }
+  },
+  "PMID_31208980_PMC6692125.xml": {
+    "status": "processed",
+    "chunks_count": 9,
+    "chunks_list": [
+      "chunk-4e0ae079210c3ef99872d0747c5a9b88",
+      "chunk-968f694e317648c82a07ee150e63adbd",
+      "chunk-5afc163e9261bd9f96c6156bfdb27585",
+      "chunk-45b0e9a843120dd461f5ba7ec823e41f",
+      "chunk-9aad668b81389b88364235018ee9c389",
+      "chunk-7568462935971fd17472cf21ed7b8a2b",
+      "chunk-1d01061347ba219119efa4109d89e71f",
+      "chunk-5afa9fdb0e4f653f1c7825c0b258326d",
+      "chunk-eb31cc9ec659a6d29b2ec1e3870fb57b"
+    ],
+    "content_summary": "Title: MafB Is Important for Pancreatic β-Cell Maintenance under a MafA-Deficient Condition\n\nTitle: Definition, diagnosis and classification of diabetes mellitus and its complications. Part1. Diagnosis and classification of diabetes mellitus; provisi...",
+    "content_length": 39165,
+    "created_at": "2026-05-12T04:58:30.824520+00:00",
+    "updated_at": "2026-05-12T05:02:15.251868+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260511_235830_585b0c7c",
+    "metadata": {
+      "processing_start_time": 1778561910,
+      "processing_end_time": 1778562135
+    }
+  },
+  "PMID_34644565_PMC8845126.xml": {
+    "status": "processed",
+    "chunks_count": 13,
+    "chunks_list": [
+      "chunk-3f64af938dff7c5f186bd7024d92cbc0",
+      "chunk-5f38c4d8fe95ae0a2b5cc05069361348",
+      "chunk-74fc4f55c8c6d83ebd1d8dba07d90692",
+      "chunk-427bdb72b4ec16ac96774e76f03ada77",
+      "chunk-63a4c12087ceb7cec876e14e7fc45727",
+      "chunk-df94a97c87154646f3ffd59dd4b312d0",
+      "chunk-9977f67772ceb665bdd71b221a2d4234",
+      "chunk-9b3deb83588a816faad5340f542e1f43",
+      "chunk-fa2caaffb8c37fe000f2af35e115fc27",
+      "chunk-2b39885796d53f3f69a4452a58c07c2d",
+      "chunk-68488f40a0b43cd31dd09cb8c1939a9a",
+      "chunk-82e08f93585dc5d50ccfbac2feb8d206",
+      "chunk-fc527b8db70f9b6c3c8648c4a33df392"
+    ],
+    "content_summary": "Title: Sex-biased islet β cell dysfunction is caused by the MODY MAFA S64F variant by inducing premature aging and senescence in males\n\nTitle: Mafa expression enhances glucose-responsive insulin secretion in neonatal rat β cells\n\nTitle: Acceleration ...",
+    "content_length": 59588,
+    "created_at": "2026-05-12T05:02:15.366985+00:00",
+    "updated_at": "2026-05-12T05:12:27.688662+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_000215_c6b219b0",
+    "metadata": {
+      "processing_start_time": 1778562497,
+      "processing_end_time": 1778562747
+    }
+  },
+  "PMID_37606041_PMC10543725.xml": {
+    "status": "processed",
+    "chunks_count": 12,
+    "chunks_list": [
+      "chunk-b13f08985b48653da8be9b63098bbb2f",
+      "chunk-ce67306159c306b2c966577061cee6bd",
+      "chunk-e6c6371cdef301723817998e0efc9ec6",
+      "chunk-e4b8d7d9156faa43670557fc5e83791e",
+      "chunk-cbe530a83d027293c37b530e3c376973",
+      "chunk-2c914d24696d0f6e2087f40c21ca5649",
+      "chunk-ea3320816339f9f109dec0e1621420bd",
+      "chunk-d1c90235486a0fe738831a720e1f94ab",
+      "chunk-46772cbd15b1e36b4aedeac0a06fd4de",
+      "chunk-b39e1736c730a00c8edfab90d7dc64da",
+      "chunk-667c57ab63de668da1132b51f1e9f411",
+      "chunk-4430aecbeab4b77ba9a003f3e96de5a0"
+    ],
+    "content_summary": "Title: Species-specific roles for the MAFA and MAFB transcription factors in regulating islet\n\nTitle: MafA and MafB activity in pancreatic β cells\n\nTitle: Pancreas organogenesis: from bud to plexus to gland\n\nTitle: MafA and MafB regulate genes critic...",
+    "content_length": 52032,
+    "created_at": "2026-05-12T05:08:17.393587+00:00",
+    "updated_at": "2026-05-12T05:16:15.264239+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_000817_bc8ac602",
+    "metadata": {
+      "processing_start_time": 1778562497,
+      "processing_end_time": 1778562975
+    }
+  },
+  "PMID_37662349_PMC10473715.xml": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-8b5b330edc0a8ae22148338c6d94f154"
+    ],
+    "content_summary": "Title: Defining unique structural features in the MAFA and MAFB transcription factors that control\n\nTitle: Defining unique structural features in the MAFA and MAFB transcription factors that control\n\nAbstract: ABSTRACT\nMAFA and MAFB are related basic...",
+    "content_length": 1880,
+    "created_at": "2026-05-12T05:16:15.433110+00:00",
+    "updated_at": "2026-05-12T05:17:16.176505+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001615_58d9d2ba",
+    "metadata": {
+      "processing_start_time": 1778563002,
+      "processing_end_time": 1778563036
+    }
+  },
+  "dup-67d0129ead548da728a3ac5793ed2bb4": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_12917329_PMC180917.xml",
+    "content_length": 4381,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:16:42.075759+00:00",
+    "updated_at": "2026-05-12T05:16:42.075761+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001642_7125753f",
+    "error_msg": "Content already exists. Original doc_id: PMID_12917329_PMC180917.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_12917329_PMC180917.xml",
+      "original_track_id": "insert_20260511_233757_dba7c058"
+    }
+  },
+  "dup-8981b1d77e7bcf8f6f41c30beeddb74f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_16580660_PMC2390934.xml",
+    "content_length": 4852,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.357655+00:00",
+    "updated_at": "2026-05-12T05:17:16.357659+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_47aff49b",
+    "error_msg": "Content already exists. Original doc_id: PMID_16580660_PMC2390934.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_16580660_PMC2390934.xml",
+      "original_track_id": "insert_20260511_233903_46e87b61"
+    }
+  },
+  "dup-483472805267bb0fd22c28da6c70253e": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_18515495_PMC3787904.xml",
+    "content_length": 4716,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.360860+00:00",
+    "updated_at": "2026-05-12T05:17:16.360861+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_d640a76d",
+    "error_msg": "Content already exists. Original doc_id: PMID_18515495_PMC3787904.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_18515495_PMC3787904.xml",
+      "original_track_id": "insert_20260511_233959_f3b53b9a"
+    }
+  },
+  "dup-e13775e02938636f992dcf8c9c0df48a": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_20627934_PMC3279542.xml",
+    "content_length": 37677,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.362899+00:00",
+    "updated_at": "2026-05-12T05:17:16.362901+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_eb81ec8e",
+    "error_msg": "Content already exists. Original doc_id: PMID_20627934_PMC3279542.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_20627934_PMC3279542.xml",
+      "original_track_id": "insert_20260511_234047_11f7d457"
+    }
+  },
+  "dup-be2aad54d4dc121d3789ef0a5b0efbff": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_24520122_PMC4030115.xml",
+    "content_length": 37868,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.364933+00:00",
+    "updated_at": "2026-05-12T05:17:16.364936+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_16de2529",
+    "error_msg": "Content already exists. Original doc_id: PMID_24520122_PMC4030115.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_24520122_PMC4030115.xml",
+      "original_track_id": "insert_20260511_234524_fe19bbe3"
+    }
+  },
+  "dup-4b0f5fd04b7954f1f4628855d8498e9c": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_26554594_PMC4675799.xml",
+    "content_length": 5216,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.367136+00:00",
+    "updated_at": "2026-05-12T05:17:16.367138+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_0f3f5c75",
+    "error_msg": "Content already exists. Original doc_id: PMID_26554594_PMC4675799.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_26554594_PMC4675799.xml",
+      "original_track_id": "insert_20260511_235306_d374532a"
+    }
+  },
+  "dup-910d57d605a1c0b51edabdc014ad1456": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_29339498_PMC5798333.xml",
+    "content_length": 37068,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.369588+00:00",
+    "updated_at": "2026-05-12T05:17:16.369590+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_0f8cce8b",
+    "error_msg": "Content already exists. Original doc_id: PMID_29339498_PMC5798333.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_29339498_PMC5798333.xml",
+      "original_track_id": "insert_20260511_235400_83840f6c"
+    }
+  },
+  "dup-a4f22c6eafe74ce68b0fff923fb38b3b": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_30425060_PMC6341297.xml",
+    "content_length": 5403,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.371695+00:00",
+    "updated_at": "2026-05-12T05:17:16.371697+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_2e06377b",
+    "error_msg": "Content already exists. Original doc_id: PMID_30425060_PMC6341297.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_30425060_PMC6341297.xml",
+      "original_track_id": "insert_20260511_235734_823528d9"
+    }
+  },
+  "dup-68a7f853623acb73515f90ddddccd3d5": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_31208980_PMC6692125.xml",
+    "content_length": 39165,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.374137+00:00",
+    "updated_at": "2026-05-12T05:17:16.374140+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_fc0b9138",
+    "error_msg": "Content already exists. Original doc_id: PMID_31208980_PMC6692125.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_31208980_PMC6692125.xml",
+      "original_track_id": "insert_20260511_235830_585b0c7c"
+    }
+  },
+  "dup-60d5601d54b1649ced84e16f1241abdc": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_34644565_PMC8845126.xml",
+    "content_length": 59588,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.376540+00:00",
+    "updated_at": "2026-05-12T05:17:16.376542+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_ae958a08",
+    "error_msg": "Content already exists. Original doc_id: PMID_34644565_PMC8845126.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_34644565_PMC8845126.xml",
+      "original_track_id": "insert_20260512_000215_c6b219b0"
+    }
+  },
+  "dup-fe15894b69d2dd0231000f8f023e92b0": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37606041_PMC10543725.xml",
+    "content_length": 52032,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.379031+00:00",
+    "updated_at": "2026-05-12T05:17:16.379032+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_fb39e526",
+    "error_msg": "Content already exists. Original doc_id: PMID_37606041_PMC10543725.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37606041_PMC10543725.xml",
+      "original_track_id": "insert_20260512_000817_bc8ac602"
+    }
+  },
+  "dup-b9f7c728fff53f38698bc814d1bcbe30": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37662349_PMC10473715.xml",
+    "content_length": 1880,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:17:16.381059+00:00",
+    "updated_at": "2026-05-12T05:17:16.381063+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_001716_0dff9cf5",
+    "error_msg": "Content already exists. Original doc_id: PMID_37662349_PMC10473715.xml, Status: DocStatus.PROCESSED",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37662349_PMC10473715.xml",
+      "original_track_id": "insert_20260512_001615_58d9d2ba"
+    }
+  },
+  "PMID_37720527_PMC10501801.xml": {
+    "status": "processed",
+    "chunks_count": 15,
+    "chunks_list": [
+      "chunk-7c72c144fce7d5c94557af956a559639",
+      "chunk-c8c7bb3e4a69884a1b79485b95f6f502",
+      "chunk-8f87338453daad7a9a4624ce798bcf6e",
+      "chunk-9bdc00ebaa404f286432a974cec96702",
+      "chunk-58ad905d1d148d4bbfe7ce4c29566fc6",
+      "chunk-5dc00b5dc127eca5ff2847cc45392453",
+      "chunk-58c0cbc7de7a8a1060e8f1608271a28c",
+      "chunk-4ef7d4c1829099c6037d8b8b7a83c3cc",
+      "chunk-fac258601b299e0c883e8e1c4a3030d6",
+      "chunk-add59972a262992e4bde6910520c0cdb",
+      "chunk-bdd484417981e099a8f308ba0994bcaa",
+      "chunk-8304b17dc893b8c9bfb7bfdb03703396",
+      "chunk-b861cee193cad9e0f142051047e83aae",
+      "chunk-bcadefd5324392c8a202934109c8c242",
+      "chunk-9bf309775cbb3bf74509531fe53568a5"
+    ],
+    "content_summary": "Title: Pancreatic β-cell senescence in diabetes: mechanisms, markers and therapies\n\nTitle: Targeted elimination of senescent beta cells prevents type 1 diabetes\n\nTitle: Acceleration of β Cell aging determines diabetes and senolysis improves disease o...",
+    "content_length": 70294,
+    "created_at": "2026-05-12T05:17:16.383619+00:00",
+    "updated_at": "2026-05-12T06:20:07.842680+00:00",
+    "file_path": "Pancreatic β-cell senescence in diabetes: mechanisms, markers and therapies.",
+    "track_id": "insert_20260512_001716_4d09b9b6",
+    "metadata": {
+      "processing_start_time": 1778566466,
+      "processing_end_time": 1778566807
+    }
+  },
+  "PMID_37895232_PMC10606904.xml": {
+    "status": "processed",
+    "chunks_count": 8,
+    "chunks_list": [
+      "chunk-02381256ec5732a712b97ced237c2acb",
+      "chunk-ed6515ae53fc7e07b1c44a83258c3224",
+      "chunk-01e46f30e47340f5c5b95376196543ed",
+      "chunk-0be98cbe29b4c692e555154146fad640",
+      "chunk-5b1a171c046b7e074fd282a07d58cc39",
+      "chunk-222f634a871d4f5fd5cffac2fce0d698",
+      "chunk-fe670890a826e2e1970f382c46b77260",
+      "chunk-a91f8726a8e590e31edad7232b84804b"
+    ],
+    "content_summary": "Title: Exploring Large MAF Transcription Factors: Functions, Pathology, and Mouse Models with Point Mutations\n\nTitle: v-maf, a viral oncogene that encodes a “leucine zipper” motif\n\nTitle: The world according to maf\n\nTitle: The maf transcription facto...",
+    "content_length": 38194,
+    "created_at": "2026-05-12T05:23:18.609913+00:00",
+    "updated_at": "2026-05-12T06:11:12.155409+00:00",
+    "file_path": "Exploring Large MAF Transcription Factors: Functions, Pathology, and Mouse Models with Point Mutations.",
+    "track_id": "insert_20260512_002318_6a30426f",
+    "metadata": {
+      "processing_start_time": 1778565752,
+      "processing_end_time": 1778566272
+    }
+  },
+  "PMID_37949065_PMC10842515.xml": {
+    "status": "processed",
+    "chunks_count": 17,
+    "chunks_list": [
+      "chunk-2d13aa78bf917b6b3ed2e772b6f010e3",
+      "chunk-18ba6ed2ada6acd593e0a5d2f036f947",
+      "chunk-ea9634b81ecdb467a2b26648246e5b5c",
+      "chunk-c625d74e06abff522b8eb3d76df6ae32",
+      "chunk-40e720fe9c9efb2c2c2dedf6638ae8f4",
+      "chunk-8dfde3b4ec67624c5a1e8f788a0f0311",
+      "chunk-c3838ae3de5236c272eda0072cc83f4e",
+      "chunk-23c7b10bcd96e1a6a6ea025a643b2b01",
+      "chunk-f797167cb0737019ee587d4f66f13530",
+      "chunk-353703794bc6a501b5c11f84a2064293",
+      "chunk-e9e53f09e3b38fb66b0f093b0768d32a",
+      "chunk-40bbefacfceda2b6335fdb6310e2f7ae",
+      "chunk-e72d8d21ebb3fc252c498fcbfeed6c1d",
+      "chunk-a7dd7d21dd9a5aa2ba54defd650b8ebd",
+      "chunk-02c41952a3f79a76f3315858bb8a14bb",
+      "chunk-e74e3fadd5f43dbb51005345f56dec5c",
+      "chunk-998ffa4d73cf2bff2869180312e50725"
+    ],
+    "content_summary": "Title: Stress-induced β-cell early senescence confers protection against type 1 diabetes\n\nTitle: An integrated stress response regulates amino acid metabolism and resistance to oxidative stress\n\nTitle: Intracellular signaling by the unfolded protein ...",
+    "content_length": 72068,
+    "created_at": "2026-05-12T05:30:04.745676+00:00",
+    "updated_at": "2026-05-12T05:45:13.112260+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_003004_e6116e99",
+    "metadata": {
+      "processing_start_time": 1778564166,
+      "processing_end_time": 1778564713
+    }
+  },
+  "PMID_38645001_PMC11030320.xml": {
+    "status": "processed",
+    "chunks_count": 11,
+    "chunks_list": [
+      "chunk-b67e26d82684726785f1910ba6919cf0",
+      "chunk-cd3982c3cb7b00162818de82027a853e",
+      "chunk-6c0d05211cf3080af14ec050e5cc97ef",
+      "chunk-9e607d2cca86a6257f1db73bacae2c96",
+      "chunk-9a7873cb15c71b20e5fc369a6f0ab52a",
+      "chunk-fe5b7d8c678cb311e300af3b74f19ed6",
+      "chunk-794cb97944fe847e61831fceed4d92ee",
+      "chunk-64f42efe8d71d6b6b69c377d2a7c44b1",
+      "chunk-78c6090d91c84168c42d7ba3a2808633",
+      "chunk-5bcdcae8f65f7440848eed5a2448750b",
+      "chunk-8ee38120968aa57daae758d9f758edfb"
+    ],
+    "content_summary": "Title: Single cell regulatory architecture of human pancreatic islets suggests sex differences in β cell function and the pathogenesis of type 2 diabetes\n\nTitle: Sex-specific regulatory architecture of pancreatic islets from subjects with and without...",
+    "content_length": 51164,
+    "created_at": "2026-05-12T05:45:13.337954+00:00",
+    "updated_at": "2026-05-12T06:19:53.449097+00:00",
+    "file_path": "Single cell regulatory architecture of human pancreatic islets suggests sex differences in β cell function and the pathogenesis of type 2 diabetes.",
+    "track_id": "insert_20260512_004513_f3dea054",
+    "metadata": {
+      "processing_start_time": 1778566466,
+      "processing_end_time": 1778566793
+    }
+  },
+  "dup-3c3ff266dbfae46e3397287dd7368940": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_12917329_PMC180917.xml",
+    "content_length": 4381,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:46:02.926433+00:00",
+    "updated_at": "2026-05-12T05:46:02.926438+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_004602_25ff3373",
+    "error_msg": "Content already exists. Original doc_id: PMID_12917329_PMC180917.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_12917329_PMC180917.xml",
+      "original_track_id": "insert_20260511_233757_dba7c058"
+    }
+  },
+  "dup-385e8874786baf40e5f1204906be0b44": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_12917329_PMC180917.xml",
+    "content_length": 4381,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:46:33.843628+00:00",
+    "updated_at": "2026-05-12T05:46:33.843630+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260512_004633_634bb2ea",
+    "error_msg": "Content already exists. Original doc_id: PMID_12917329_PMC180917.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_12917329_PMC180917.xml",
+      "original_track_id": "insert_20260511_233757_dba7c058"
+    }
+  },
+  "dup-ddf5224d85859b63bbe62f10212fcfc5": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_12917329_PMC180917.xml",
+    "content_length": 4381,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T05:59:33.738239+00:00",
+    "updated_at": "2026-05-12T05:59:33.738241+00:00",
+    "file_path": "Members of the large Maf transcription family regulate insulin gene transcription in islet beta cells.",
+    "track_id": "insert_20260512_005933_e0d958a1",
+    "error_msg": "Content already exists. Original doc_id: PMID_12917329_PMC180917.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_12917329_PMC180917.xml",
+      "original_track_id": "insert_20260511_233757_dba7c058"
+    }
+  },
+  "dup-3810614d162ba2ff0caddc87c613bdd3": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_12917329_PMC180917.xml",
+    "content_length": 4381,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:02:32.052755+00:00",
+    "updated_at": "2026-05-12T06:02:32.052762+00:00",
+    "file_path": "Members of the large Maf transcription family regulate insulin gene transcription in islet beta cells.",
+    "track_id": "insert_20260512_010232_2b2c754b",
+    "error_msg": "Content already exists. Original doc_id: PMID_12917329_PMC180917.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_12917329_PMC180917.xml",
+      "original_track_id": "insert_20260511_233757_dba7c058"
+    }
+  },
+  "dup-2d9de927b7554da2118f38dbb11805a9": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_16580660_PMC2390934.xml",
+    "content_length": 4852,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:14:26.803936+00:00",
+    "updated_at": "2026-05-12T06:14:26.803938+00:00",
+    "file_path": "A switch from MafB to MafA expression accompanies differentiation to pancreatic beta-cells.",
+    "track_id": "insert_20260512_011426_01087136",
+    "error_msg": "Content already exists. Original doc_id: PMID_16580660_PMC2390934.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_16580660_PMC2390934.xml",
+      "original_track_id": "insert_20260511_233903_46e87b61"
+    }
+  },
+  "dup-1f49cea4ced45a7b77650d42898a7d78": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_18515495_PMC3787904.xml",
+    "content_length": 4716,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.231010+00:00",
+    "updated_at": "2026-05-12T06:20:08.231018+00:00",
+    "file_path": "MafA is a dedicated activator of the insulin gene in vivo.",
+    "track_id": "insert_20260512_012008_1977d3dd",
+    "error_msg": "Content already exists. Original doc_id: PMID_18515495_PMC3787904.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_18515495_PMC3787904.xml",
+      "original_track_id": "insert_20260511_233959_f3b53b9a"
+    }
+  },
+  "dup-a1ea2406ec6c3ae306ea89f474dcc39e": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_20627934_PMC3279542.xml",
+    "content_length": 37677,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.284738+00:00",
+    "updated_at": "2026-05-12T06:20:08.284740+00:00",
+    "file_path": "MafA and MafB regulate genes critical to beta-cells in a unique temporal manner.",
+    "track_id": "insert_20260512_012008_a27c25cd",
+    "error_msg": "Content already exists. Original doc_id: PMID_20627934_PMC3279542.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_20627934_PMC3279542.xml",
+      "original_track_id": "insert_20260511_234047_11f7d457"
+    }
+  },
+  "dup-69d5101b317bf4908706e081d364d8f7": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_24520122_PMC4030115.xml",
+    "content_length": 37868,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.337471+00:00",
+    "updated_at": "2026-05-12T06:20:08.337477+00:00",
+    "file_path": "The MafA transcription factor becomes essential to islet β-cells soon after birth.",
+    "track_id": "insert_20260512_012008_03b53864",
+    "error_msg": "Content already exists. Original doc_id: PMID_24520122_PMC4030115.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_24520122_PMC4030115.xml",
+      "original_track_id": "insert_20260511_234524_fe19bbe3"
+    }
+  },
+  "dup-5f0f3489cdddac2a8dc488aff187879f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_26554594_PMC4675799.xml",
+    "content_length": 5216,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.392482+00:00",
+    "updated_at": "2026-05-12T06:20:08.392488+00:00",
+    "file_path": "The MAFB transcription factor impacts islet α-cell function in rodents and represents a unique signature of primate islet β-cells.",
+    "track_id": "insert_20260512_012008_4fddecc3",
+    "error_msg": "Content already exists. Original doc_id: PMID_26554594_PMC4675799.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_26554594_PMC4675799.xml",
+      "original_track_id": "insert_20260511_235306_d374532a"
+    }
+  },
+  "dup-5cfa422e32b6dbc350a44d99e4d023a3": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_29339498_PMC5798333.xml",
+    "content_length": 37068,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.451275+00:00",
+    "updated_at": "2026-05-12T06:20:08.451282+00:00",
+    "file_path": "MAFA missense mutation causes familial insulinomatosis and diabetes mellitus.",
+    "track_id": "insert_20260512_012008_b1b2489f",
+    "error_msg": "Content already exists. Original doc_id: PMID_29339498_PMC5798333.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_29339498_PMC5798333.xml",
+      "original_track_id": "insert_20260511_235400_83840f6c"
+    }
+  },
+  "dup-df2a163f25b20edc6bd6bf451e18c775": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_30425060_PMC6341297.xml",
+    "content_length": 5403,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.508490+00:00",
+    "updated_at": "2026-05-12T06:20:08.508498+00:00",
+    "file_path": "Examining How the MAFB Transcription Factor Affects Islet β-Cell Function Postnatally.",
+    "track_id": "insert_20260512_012008_11aa6b28",
+    "error_msg": "Content already exists. Original doc_id: PMID_30425060_PMC6341297.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_30425060_PMC6341297.xml",
+      "original_track_id": "insert_20260511_235734_823528d9"
+    }
+  },
+  "dup-dc3453feef5ac68c67050934676a8d4a": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_31208980_PMC6692125.xml",
+    "content_length": 39165,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.563042+00:00",
+    "updated_at": "2026-05-12T06:20:08.563052+00:00",
+    "file_path": "MafB Is Important for Pancreatic β-Cell Maintenance under a MafA-Deficient Condition.",
+    "track_id": "insert_20260512_012008_eb28203b",
+    "error_msg": "Content already exists. Original doc_id: PMID_31208980_PMC6692125.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_31208980_PMC6692125.xml",
+      "original_track_id": "insert_20260511_235830_585b0c7c"
+    }
+  },
+  "dup-40214e5c5f058e4277ea8d50459b94a9": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_34644565_PMC8845126.xml",
+    "content_length": 59588,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.617403+00:00",
+    "updated_at": "2026-05-12T06:20:08.617407+00:00",
+    "file_path": "Sex-biased islet β cell dysfunction is caused by the MODY MAFA S64F variant by inducing premature aging and senescence in males.",
+    "track_id": "insert_20260512_012008_3ca18c03",
+    "error_msg": "Content already exists. Original doc_id: PMID_34644565_PMC8845126.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_34644565_PMC8845126.xml",
+      "original_track_id": "insert_20260512_000215_c6b219b0"
+    }
+  },
+  "dup-41d64217cb9d76d74ed72d23e57ae928": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37606041_PMC10543725.xml",
+    "content_length": 52032,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.668629+00:00",
+    "updated_at": "2026-05-12T06:20:08.668633+00:00",
+    "file_path": "Species-specific roles for the MAFA and MAFB transcription factors in regulating islet β cell identity.",
+    "track_id": "insert_20260512_012008_55bcd56a",
+    "error_msg": "Content already exists. Original doc_id: PMID_37606041_PMC10543725.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37606041_PMC10543725.xml",
+      "original_track_id": "insert_20260512_000817_bc8ac602"
+    }
+  },
+  "dup-67227c26b5b97ef4576c9334fe345d98": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37662349_PMC10473715.xml",
+    "content_length": 1880,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.720899+00:00",
+    "updated_at": "2026-05-12T06:20:08.720908+00:00",
+    "file_path": "Defining unique structural features in the MAFA and MAFB transcription factors that control Insulin gene activity.",
+    "track_id": "insert_20260512_012008_d69642de",
+    "error_msg": "Content already exists. Original doc_id: PMID_37662349_PMC10473715.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37662349_PMC10473715.xml",
+      "original_track_id": "insert_20260512_001615_58d9d2ba"
+    }
+  },
+  "dup-cda91c96c2a7c84c81883f4bd762a050": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37720527_PMC10501801.xml",
+    "content_length": 70294,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.775790+00:00",
+    "updated_at": "2026-05-12T06:20:08.775800+00:00",
+    "file_path": "Pancreatic β-cell senescence in diabetes: mechanisms, markers and therapies.",
+    "track_id": "insert_20260512_012008_28856c22",
+    "error_msg": "Content already exists. Original doc_id: PMID_37720527_PMC10501801.xml, Status: DocStatus.PROCESSED",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37720527_PMC10501801.xml",
+      "original_track_id": "insert_20260512_001716_4d09b9b6"
+    }
+  },
+  "dup-bf0986eb9447990889010df53813d0ff": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37895232_PMC10606904.xml",
+    "content_length": 38194,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.827743+00:00",
+    "updated_at": "2026-05-12T06:20:08.827747+00:00",
+    "file_path": "Exploring Large MAF Transcription Factors: Functions, Pathology, and Mouse Models with Point Mutations.",
+    "track_id": "insert_20260512_012008_a41a79b6",
+    "error_msg": "Content already exists. Original doc_id: PMID_37895232_PMC10606904.xml, Status: DocStatus.PROCESSED",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37895232_PMC10606904.xml",
+      "original_track_id": "insert_20260512_002318_6a30426f"
+    }
+  },
+  "dup-057a465bb4170acd888467007a68f846": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_37949065_PMC10842515.xml",
+    "content_length": 72068,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.877979+00:00",
+    "updated_at": "2026-05-12T06:20:08.877982+00:00",
+    "file_path": "Stress-induced β cell early senescence confers protection against type 1 diabetes.",
+    "track_id": "insert_20260512_012008_53fe204d",
+    "error_msg": "Content already exists. Original doc_id: PMID_37949065_PMC10842515.xml, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_37949065_PMC10842515.xml",
+      "original_track_id": "insert_20260512_003004_e6116e99"
+    }
+  },
+  "dup-300b02d77047533376e9cbed5f118a48": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: PMID_38645001_PMC11030320.xml",
+    "content_length": 51164,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-12T06:20:08.926327+00:00",
+    "updated_at": "2026-05-12T06:20:08.926331+00:00",
+    "file_path": "Single cell regulatory architecture of human pancreatic islets suggests sex differences in β cell function and the pathogenesis of type 2 diabetes.",
+    "track_id": "insert_20260512_012008_a61963bb",
+    "error_msg": "Content already exists. Original doc_id: PMID_38645001_PMC11030320.xml, Status: DocStatus.PROCESSED",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "PMID_38645001_PMC11030320.xml",
+      "original_track_id": "insert_20260512_004513_f3dea054"
+    }
+  },
+  "PMID_38831121_PMC11578798.xml": {
+    "status": "processed",
+    "chunks_count": 17,
+    "chunks_list": [
+      "chunk-b02375738a9ebacd53446fec2077ee76",
+      "chunk-7c5a8121875c37f2659ae345688f6afe",
+      "chunk-71a6a7a3a4894dbd7d979b7e5766d5a6",
+      "chunk-ea13fe99fbc01cb6036ecddcda0aae8a",
+      "chunk-bf5aeca434044079720fd4ae2d32c9b9",
+      "chunk-7ff588c6efe73ecb07c6b95acb392e92",
+      "chunk-25d34b513b15180c8a2d7b57ae829067",
+      "chunk-ca844018665036149579ef01b8f9ec3c",
+      "chunk-6ca3e5da7a4fe15854dde6289fd15667",
+      "chunk-6a471400d67fa8643230222fb3576486",
+      "chunk-3d3b1de44d6b73a10793a43351e18e6e",
+      "chunk-6ce1a7b385e0f22ca823c850de9bf8a0",
+      "chunk-b773584b36e5b4845bedffea9a1b6add",
+      "chunk-d7ef738c0840825512b2cb7af5b7c3f6",
+      "chunk-7f25c34949789593e96b7a57ead73f11",
+      "chunk-a5bb73f6c7980a9f906f42f6e0e9ce27",
+      "chunk-682da4208f0eb800bc5523bd70a84eb7"
+    ],
+    "content_summary": "Title: SenNet recommendations for detecting senescent cells in different tissues\n\nTitle: Senescence in health and disease\n\nTitle: Programmed cell senescence during mammalian embryonic development\n\nTitle: Senescence is a developmental mechanism that c...",
+    "content_length": 85503,
+    "created_at": "2026-05-12T06:20:08.973793+00:00",
+    "updated_at": "2026-05-12T06:37:02.615093+00:00",
+    "file_path": "SenNet recommendations for detecting senescent cells in different tissues.",
+    "track_id": "insert_20260512_012008_ad4d7cd2",
+    "metadata": {
+      "processing_start_time": 1778566808,
+      "processing_end_time": 1778567822
+    }
+  },
+  "PMID_39011095_PMC11247939.xml": {
+    "status": "processed",
+    "chunks_count": 12,
+    "chunks_list": [
+      "chunk-51601485f0924871a988aae2e5ce30bc",
+      "chunk-0238834380bfb40677324883af3e3004",
+      "chunk-73a24341c9b63bd3b6313252fe6ed4b3",
+      "chunk-d7bd4bfe81f828dceb60b520d85bcf2d",
+      "chunk-b0269f34de8f0928a9614438917079ef",
+      "chunk-76049b85888e8e904e7c01de9740d34f",
+      "chunk-dfd4ac2599dc6d5dc028ad0e83ccf82f",
+      "chunk-f3f8e2c47cb96d65689fa504202cd0f7",
+      "chunk-1a7d380dafd31120f8a1af317cfb0ab1",
+      "chunk-e7913917fca6b789f10e2948623ce222",
+      "chunk-6615f49a664b0e6bfe3dc5ebc25a278f",
+      "chunk-a50ca1b65c7c406b024588b964cb7d22"
+    ],
+    "content_summary": "Title: Single cell regulatory architecture of human pancreatic islets suggests sex differences in β cell function and the pathogenesis of type 2 diabetes\n\nTitle: Sex-specific regulatory architecture of pancreatic islets from subjects with and without...",
+    "content_length": 56322,
+    "created_at": "2026-05-12T06:37:03.112162+00:00",
+    "updated_at": "2026-05-12T06:43:34.884901+00:00",
+    "file_path": "Single cell regulatory architecture of human pancreatic islets suggests sex differences in β cell function and the pathogenesis of type 2 diabetes.",
+    "track_id": "insert_20260512_013703_043dff82",
+    "metadata": {
+      "processing_start_time": 1778567823,
+      "processing_end_time": 1778568214
+    }
+  },
+  "PMID_39239092_PMC11374605.xml": {
+    "status": "processed",
+    "chunks_count": 8,
+    "chunks_list": [
+      "chunk-5f6e43723dd8061d1a0532981e4a43b2",
+      "chunk-732255e9544dde6a7dbc319c61cd8e1e",
+      "chunk-08f3e602fed4b4ebfff436b75194d507",
+      "chunk-e32fd907a01d621388ff41b9b47bfa34",
+      "chunk-6215695e8bd809fd02cb8b9b7b4123ad",
+      "chunk-184abd4f45a78238743890eb9d4f8c56",
+      "chunk-1628eba511291c52eab3e72ef0fd0239",
+      "chunk-a778c4bc437c223ff92d776f7ab7b6a5"
+    ],
+    "content_summary": "Title: Exploring senescence as a modifier of β cell extracellular vesicles in type 1 diabetes\n\nTitle: Type 1 diabetes mellitus\n\nTitle: Pathogenesis of type 1 diabetes: established facts and new insights\n\nTitle: Anti-islet autoantibodies in type 1 dia...",
+    "content_length": 35272,
+    "created_at": "2026-05-12T06:43:35.376835+00:00",
+    "updated_at": "2026-05-12T06:48:51.017063+00:00",
+    "file_path": "Exploring senescence as a modifier of β cell extracellular vesicles in type 1 diabetes.",
+    "track_id": "insert_20260512_014335_73b4d1cf",
+    "metadata": {
+      "processing_start_time": 1778568215,
+      "processing_end_time": 1778568531
+    }
+  },
+  "PMID_39364746_PMC11555696.xml": {
+    "status": "processed",
+    "chunks_count": 8,
+    "chunks_list": [
+      "chunk-72bf1fbaf7a329c364247108f8b30408",
+      "chunk-735ea17eaeb5e3524d0871e16116e986",
+      "chunk-80318e0997c6182c0124775c5f01f6a0",
+      "chunk-58f0193e389064a60d513f13c5cad52b",
+      "chunk-db03a7d3c861658f2beac422f86b21ac",
+      "chunk-9e7d877b531b99ded5aba6df6f1635f3",
+      "chunk-de697a7536ea955d878a95580bf8aa11",
+      "chunk-88b0125512b4fa44926ba8a80a62b0a6"
+    ],
+    "content_summary": "Title: Safeguarding genomic integrity in beta-cells: implications for beta-cell differentiation, growth, and dysfunction\n\nTitle: Chromatin and the genome integrity network\n\nTitle: Endogenous DNA damage as a source of genomic instability in cancer\n\nTi...",
+    "content_length": 42928,
+    "created_at": "2026-05-12T06:48:51.547576+00:00",
+    "updated_at": "2026-05-12T06:54:12.329447+00:00",
+    "file_path": "Safeguarding genomic integrity in beta-cells: implications for beta-cell differentiation, growth, and dysfunction.",
+    "track_id": "insert_20260512_014851_0569c63a",
+    "metadata": {
+      "processing_start_time": 1778568531,
+      "processing_end_time": 1778568852
+    }
+  },
+  "PMID_39433757_PMC11493975.xml": {
+    "status": "processed",
+    "chunks_count": 23,
+    "chunks_list": [
+      "chunk-3f63ca40b092870f725a75e7a36045d8",
+      "chunk-64b61717ec6764bc92fa7c3c5067d345",
+      "chunk-363f3a19905f833d29a7d1242acc6641",
+      "chunk-d286ee457150be65228790e800b5207b",
+      "chunk-f2e4a544176811f5b43952b185e1ed3a",
+      "chunk-0178968ab91760930c812723c60d342b",
+      "chunk-f02465fe113dd488219949222d1430e5",
+      "chunk-08e345f1e7ff9529c2ab94760dcb50f5",
+      "chunk-68a87a3a1f3eb5d8b0e53b41df492512",
+      "chunk-75f39153d9f864070e17a74724a6c8c6",
+      "chunk-f0c13c5a18e2c5037815818d22c48a64",
+      "chunk-fa01ef8f1657a9890660f864f52123c2",
+      "chunk-c85c9569fee140bfd52fcc0bbfbcc9c2",
+      "chunk-002f23b1d29df711e839459b4d6f0711",
+      "chunk-364a12c675ebfd67c468ab6fc47e6696",
+      "chunk-ce68225f2288adf7d07962282496e8c5",
+      "chunk-6cadc21c6ca916dd06510987c1b7dbf4",
+      "chunk-af08dcd3bdc472cb74376c18c72cf9f8",
+      "chunk-6c60bd30a96540afcdba183f8a7aa851",
+      "chunk-1d5c817dce40d1df02e7717bb9598632",
+      "chunk-91ed3d214b295f4a8cccdca98b3822e0",
+      "chunk-56d5ffe02105b1bd6d77faab9c812433",
+      "chunk-831b74d6764559e79da6fa29d15caf42"
+    ],
+    "content_summary": "Title: Calorie restriction increases insulin sensitivity to promote beta cell homeostasis and longevity in mice\n\nTitle: Caloric restriction promotes beta cell longevity and delays aging and senescence by enhancing cell identity and homeostasis mechan...",
+    "content_length": 103718,
+    "created_at": "2026-05-12T06:54:12.900435+00:00",
+    "updated_at": "2026-05-12T07:06:34.723822+00:00",
+    "file_path": "Calorie restriction increases insulin sensitivity to promote beta cell homeostasis and longevity in mice.",
+    "track_id": "insert_20260512_015412_5eb35649",
+    "metadata": {
+      "processing_start_time": 1778568852,
+      "processing_end_time": 1778569594
+    }
+  },
+  "PMID_39476962_PMC11626809.xml": {
+    "status": "processed",
+    "chunks_count": 9,
+    "chunks_list": [
+      "chunk-3384cef9855a1b408c68f7d1ea3153c1",
+      "chunk-2f4fecd9e508da1daa4a0d2d27a7e759",
+      "chunk-eb32288d5dedac1b23370508bf2f7b2a",
+      "chunk-84ba2041af7b71a5fc2faad1de1c95dd",
+      "chunk-ecb3c400fe73c10974d8a6b3b2160b23",
+      "chunk-d07a2e48a0133bedad1b6e79e652b89c",
+      "chunk-eae638e9cabe91a68fc062c9981b0e86",
+      "chunk-19fff7a7048ab7112926e25c2e46450b",
+      "chunk-1cf2dcb173b9b68c2485c5386672e0ef"
+    ],
+    "content_summary": "Title: Defining unique structural features in the MAFA and MAFB transcription factors that control\n\nTitle: Defining unique structural features in the MAFA and MAFB transcription factors that control\n\nTitle: MafA and MafB regulate genes critical to be...",
+    "content_length": 36424,
+    "created_at": "2026-05-12T07:06:35.313233+00:00",
+    "updated_at": "2026-05-12T07:11:29.399752+00:00",
+    "file_path": "Defining unique structural features in the MAFA and MAFB transcription factors that control Insulin gene activity.",
+    "track_id": "insert_20260512_020635_030c05a2",
+    "metadata": {
+      "processing_start_time": 1778569595,
+      "processing_end_time": 1778569889
+    }
+  },
+  "PMID_39567827_PMC11649919.xml": {
+    "status": "processed",
+    "chunks_count": 17,
+    "chunks_list": [
+      "chunk-9c41ef398df926f1c888f284aff2a98e",
+      "chunk-d41db2658ec2709309c04b39b1894e48",
+      "chunk-f2496631e25b79859522b657da346b58",
+      "chunk-da10e6374cdbd3d6e4a07d773cd172d3",
+      "chunk-87d48756321bdf8ef533359c0655a3d9",
+      "chunk-e42c3b77d3170e854edbbc691159609d",
+      "chunk-dd4f6cfb9180aade52c8cb84446ced85",
+      "chunk-5cd7041acf7539c8db67413bcd98f41b",
+      "chunk-2efc110efa119e343b95df1abbd0a327",
+      "chunk-1ea44d17d2377f3dd0f15239a73e15e4",
+      "chunk-822d03d11fbf61e2a25591e2663ef1ca",
+      "chunk-5804ddf6c13fee09d00987476aa3c478",
+      "chunk-1d0bf8cd8c8cb69199fb8f9bf6c37e70",
+      "chunk-a5e348a0adb909ac9a245bd8fb1b7b7b",
+      "chunk-835fc8c5c19bf30c115aefbeec789479",
+      "chunk-8c6115fe960d3cc141101692d3cf027c",
+      "chunk-68cd62913e543123e8319a7a70949910"
+    ],
+    "content_summary": "Title: Sex-specific regulatory architecture of pancreatic islets from subjects with and without type 2 diabetes\n\nTitle: Single cell regulatory architecture of human pancreatic islets suggests sex differences in β cell function and the pathogenesis of...",
+    "content_length": 73039,
+    "created_at": "2026-05-12T07:11:30.037968+00:00",
+    "updated_at": "2026-05-12T07:20:48.926792+00:00",
+    "file_path": "Sex-specific regulatory architecture of pancreatic islets from subjects with and without type 2 diabetes.",
+    "track_id": "insert_20260512_021130_409f1fd5",
+    "metadata": {
+      "processing_start_time": 1778569890,
+      "processing_end_time": 1778570448
+    }
+  },
+  "PMID_39821711_abstract.txt": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-f59d5f5f1ee9669c465b2d2241f35ac2"
+    ],
+    "content_summary": "1. Curr Treat Options Oncol. 2025 Jan;26(1):55-71. doi:\n10.1007/s11864-024-01288-z.  Epub 2025 Jan 17.\n\nNeuroendocrine Tumors: Germline Genetics and Hereditary Syndromes.\n\nLauricella E(1), Chaoul N(1), D'Angelo G(1), Giglio A(1), Cafiero C(2), Porta ...",
+    "content_length": 2240,
+    "created_at": "2026-05-12T07:20:49.565875+00:00",
+    "updated_at": "2026-05-12T07:21:11.293807+00:00",
+    "file_path": "Neuroendocrine Tumors: Germline Genetics and Hereditary Syndromes.",
+    "track_id": "insert_20260512_022049_84ce9faf",
+    "metadata": {
+      "processing_start_time": 1778570449,
+      "processing_end_time": 1778570471
+    }
+  },
+  "PMID_40475642_PMC12139966.xml": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-0386e6a8316aca2a67c3466442e7e1fa",
+      "chunk-c3b5cfab05f8f195de1b89f46c9a14be"
+    ],
+    "content_summary": "Title: Genetic background influences the phenotypic penetrance by MAFA\n\nAbstract: ABSTRACT\nPancreatic β-cells require the coordinated expression of transcription factors such as MAFA to dynamically secrete insulin to maintain euglycemia. We previousl...",
+    "content_length": 4710,
+    "created_at": "2026-05-12T07:21:11.905454+00:00",
+    "updated_at": "2026-05-12T07:21:54.802989+00:00",
+    "file_path": "Genetic background influences the phenotypic penetrance by MAFA (S64F) MODY in male mice.",
+    "track_id": "insert_20260512_022111_ea87b111",
+    "metadata": {
+      "processing_start_time": 1778570471,
+      "processing_end_time": 1778570514
+    }
+  },
+  "PMID_40768044_PMC12423227.xml": {
+    "status": "processed",
+    "chunks_count": 10,
+    "chunks_list": [
+      "chunk-e181574d19e6f17c0fd64b0feecf8f9e",
+      "chunk-10bdc47e4d027606476b48a401061a27",
+      "chunk-43761b34ecc024bd90bfa8711c45a233",
+      "chunk-044fb2d3ececa99a53eb87d2ee6bf18f",
+      "chunk-4e8cbb766d17c90c84d2a9452a51a41e",
+      "chunk-5596e00050d9f0135f87252a0093e9cb",
+      "chunk-cba0d7fafdd66d2ffb133e04939d15f0",
+      "chunk-8f09e5d1418f8ae04b43a24b97c1d52d",
+      "chunk-ddac43d21e0426c8d61d02d10c0cb772",
+      "chunk-9813efa6c9cd7902e394127ee79fac57"
+    ],
+    "content_summary": "Title: The role of the beta cell in type 2 diabetes: new findings from the last 5 years\n\nTitle: Early beta cell dysfunction vs insulin hypersecretion as the primary event in the pathogenesis of dysglycaemia\n\nTitle: On the causal relationships between...",
+    "content_length": 50080,
+    "created_at": "2026-05-12T07:21:55.375461+00:00",
+    "updated_at": "2026-05-12T07:28:32.716786+00:00",
+    "file_path": "The role of the beta cell in type 2 diabetes: new findings from the last 5 years.",
+    "track_id": "insert_20260512_022155_7f13eee8",
+    "metadata": {
+      "processing_start_time": 1778570515,
+      "processing_end_time": 1778570912
+    }
+  },
+  "PMID_41031371_PMC12478132.xml": {
+    "status": "processed",
+    "chunks_count": 12,
+    "chunks_list": [
+      "chunk-15ab370ab273e97005ced113e59cc48a",
+      "chunk-7ce4f6e2d90d0c06e4549d7d45037298",
+      "chunk-5e33cd1d99c96a7f6ffdd0fbea902670",
+      "chunk-9f082082b0871749ee637b1571aa95c0",
+      "chunk-6f008854d459401e11c35e6bd2541318",
+      "chunk-6a0590fd9be1db550e8a84c0781e8955",
+      "chunk-787de2a35f76e08d5b7cddadbcc01954",
+      "chunk-93bb74bfaf0604b4b9f891e16fc9f0ac",
+      "chunk-49e5c8949dfa6aa24ddf3e3b92d956e4",
+      "chunk-af17b436ff0aa3dd562bbc7e986cc909",
+      "chunk-b377c464e48f2efecc4b62133585c2f1",
+      "chunk-cc8b7f13c10f7804685d92e4b92bc78a"
+    ],
+    "content_summary": "Title: Nucleolar stress facilitates islet β cell senescence via hijacking the DNA damage response pathways\n\nTitle: Type 2 Diabetes Mellitus: A Comprehensive Review of Pathophysiology, Comorbidities, and Emerging Therapies\n\nTitle: Association between ...",
+    "content_length": 51749,
+    "created_at": "2026-05-12T07:28:33.392218+00:00",
+    "updated_at": "2026-05-12T07:34:13.763958+00:00",
+    "file_path": "Nucleolar stress facilitates islet β cell senescence via hijacking the DNA damage response pathways.",
+    "track_id": "insert_20260512_022833_86e0e1b2",
+    "metadata": {
+      "processing_start_time": 1778570913,
+      "processing_end_time": 1778571253
+    }
+  },
+  "PMID_41292712_PMC12642488.xml": {
+    "status": "processed",
+    "chunks_count": 9,
+    "chunks_list": [
+      "chunk-ce72a72ed1aaea72aac97c28374f8f86",
+      "chunk-28a44d52c17c29e9741a935aa76e8afe",
+      "chunk-e953ac093714735fa9b5b27463bf5dff",
+      "chunk-3c461d96db4bed849ef22472fc2b0cd0",
+      "chunk-7af94fcbbc3d167377ece712218fa36b",
+      "chunk-dad82642ce24967122d02819b52a6f45",
+      "chunk-f6204b07313b33d741c243f18ce86735",
+      "chunk-35d7a41162ea60151fe17b4e60e06d1b",
+      "chunk-c63b5ad461844f8e5d9a90f5dfc52f1e"
+    ],
+    "content_summary": "Title: Developmental control of DNA damage responses in α- and β-cells shapes the selective beta-cell susceptibility in diabetes\n\nTitle: Beta-cell mass and type 1 diabetes: going, going, gone?\n\nTitle: Banting lecture 1990. Beta-cells in type II diabe...",
+    "content_length": 39969,
+    "created_at": "2026-05-12T07:34:14.457004+00:00",
+    "updated_at": "2026-05-12T07:38:54.029526+00:00",
+    "file_path": "Developmental control of DNA damage responses in α- and β-cells shapes the selective beta-cell susceptibility in diabetes.",
+    "track_id": "insert_20260512_023414_1f5d3bc6",
+    "metadata": {
+      "processing_start_time": 1778571254,
+      "processing_end_time": 1778571534
+    }
+  }
+}
