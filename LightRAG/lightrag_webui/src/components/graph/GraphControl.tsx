@@ -39,6 +39,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
   const minEdgeSize = useSettingsStore.use.minEdgeSize()
   const maxEdgeSize = useSettingsStore.use.maxEdgeSize()
   const selectedNode = useGraphStore.use.selectedNode()
+  const secondSelectedNode = useGraphStore.use.secondSelectedNode()
   const focusedNode = useGraphStore.use.focusedNode()
   const selectedEdge = useGraphStore.use.selectedEdge()
   const focusedEdge = useGraphStore.use.focusedEdge()
@@ -127,8 +128,15 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
       clickNode: (event: NodeEvent) => {
         const graph = sigma.getGraph()
         if (graph.hasNode(event.node)) {
-          setSelectedNode(event.node)
-          setSelectedEdge(null)
+          const mouseEvent = event.event.original as MouseEvent
+          const currentSelected = useGraphStore.getState().selectedNode
+          if (mouseEvent.shiftKey && currentSelected && currentSelected !== event.node) {
+            useGraphStore.getState().setSecondSelectedNode(event.node)
+          } else {
+            setSelectedNode(event.node)
+            useGraphStore.getState().setSecondSelectedNode(null)
+            setSelectedEdge(null)
+          }
         }
       },
       doubleClickNode: (event: NodeEvent) => {
@@ -269,12 +277,21 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           const _focusedNode = focusedNode || selectedNode
           const _focusedEdge = focusedEdge || selectedEdge
 
+          // Highlight second selected node with amber border
+          if (secondSelectedNode && node === secondSelectedNode) {
+            newData.highlighted = true
+            newData.borderColor = '#F59E0B'  // amber-500
+          }
+
           if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
               if (node === _focusedNode || graph.neighbors(_focusedNode).includes(node)) {
                 newData.highlighted = true
                 if (node === selectedNode) {
                   newData.borderColor = Constants.nodeBorderColorSelected
+                }
+                if (node === secondSelectedNode) {
+                  newData.borderColor = '#F59E0B'  // amber-500
                 }
               }
             } catch (error) {
@@ -372,6 +389,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
     })
   }, [
     selectedNode,
+    secondSelectedNode,
     focusedNode,
     selectedEdge,
     focusedEdge,

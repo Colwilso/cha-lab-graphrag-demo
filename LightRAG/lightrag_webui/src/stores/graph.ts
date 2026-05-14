@@ -83,6 +83,7 @@ export class RawGraph {
 
 interface GraphState {
   selectedNode: string | null
+  secondSelectedNode: string | null
   focusedNode: string | null
   selectedEdge: string | null
   focusedEdge: string | null
@@ -107,6 +108,7 @@ interface GraphState {
 
   setSigmaInstance: (instance: any) => void
   setSelectedNode: (nodeId: string | null, moveToSelectedNode?: boolean) => void
+  setSecondSelectedNode: (nodeId: string | null) => void
   setFocusedNode: (nodeId: string | null) => void
   setSelectedEdge: (edgeId: string | null) => void
   setFocusedEdge: (edgeId: string | null) => void
@@ -153,6 +155,7 @@ interface GraphState {
 
 const useGraphStoreBase = create<GraphState>()((set, get) => ({
   selectedNode: null,
+  secondSelectedNode: null,
   focusedNode: null,
   selectedEdge: null,
   focusedEdge: null,
@@ -182,12 +185,14 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
   setIsFetching: (isFetching: boolean) => set({ isFetching }),
   setSelectedNode: (nodeId: string | null, moveToSelectedNode?: boolean) =>
     set({ selectedNode: nodeId, moveToSelectedNode }),
+  setSecondSelectedNode: (nodeId: string | null) => set({ secondSelectedNode: nodeId }),
   setFocusedNode: (nodeId: string | null) => set({ focusedNode: nodeId }),
   setSelectedEdge: (edgeId: string | null) => set({ selectedEdge: edgeId }),
   setFocusedEdge: (edgeId: string | null) => set({ focusedEdge: edgeId }),
   clearSelection: () =>
     set({
       selectedNode: null,
+      secondSelectedNode: null,
       focusedNode: null,
       selectedEdge: null,
       focusedEdge: null
@@ -195,6 +200,7 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
   reset: () => {
     set({
       selectedNode: null,
+      secondSelectedNode: null,
       focusedNode: null,
       selectedEdge: null,
       focusedEdge: null,
