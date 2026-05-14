@@ -244,7 +244,7 @@ const useSettingsStoreBase = create<SettingsState>()(
     {
       name: 'settings-storage',
       storage: createJSONStorage(() => localStorage),
-      version: 20,
+      version: 21,
       migrate: (state: any, version: number) => {
         if (version < 2) {
           state.showEdgeLabel = false
@@ -351,6 +351,11 @@ const useSettingsStoreBase = create<SettingsState>()(
           if (state.querySettings) {
             state.querySettings.mode = 'hybrid'
             state.querySettings.enable_rerank = false
+          }
+        }
+        if (version < 21) {
+          if (!state.queryLabel) {
+            state.queryLabel = defaultQueryLabel
           }
         }
         return state
