@@ -374,7 +374,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
         // Hide nodes whose entity_type is in hiddenTypes
         if (hiddenTypes.size > 0) {
           const nodeType = graph.getNodeAttribute(node, 'entity_type') as string
-          if (nodeType && hiddenTypes.has(nodeType)) {
+          if (nodeType && hiddenTypes.has(nodeType.toLowerCase())) {
             return { ...data, hidden: true, labelColor }
           }
         }
@@ -478,7 +478,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             const [source, target] = graph.extremities(edge)
             const sourceType = graph.getNodeAttribute(source, 'entity_type') as string
             const targetType = graph.getNodeAttribute(target, 'entity_type') as string
-            if ((sourceType && hiddenTypes.has(sourceType)) || (targetType && hiddenTypes.has(targetType))) {
+            if ((sourceType && hiddenTypes.has(sourceType.toLowerCase())) || (targetType && hiddenTypes.has(targetType.toLowerCase()))) {
               return { ...data, hidden: true, labelColor, color: edgeColor }
             }
           } catch (e) { /* ignore */ }
