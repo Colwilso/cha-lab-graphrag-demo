@@ -210,7 +210,7 @@ const RelationshipView = () => {
           {analysis.llm_summary && (
             <>
               <h3 className="text-md pl-1 font-bold tracking-wide text-violet-700">Analysis</h3>
-              <div className="bg-primary/5 rounded p-2 prose prose-sm dark:prose-invert max-w-none">
+              <div className="bg-primary/5 rounded p-3 prose prose-sm dark:prose-invert max-w-none prose-headings:text-xs prose-headings:font-bold prose-headings:uppercase prose-headings:tracking-wide prose-headings:mt-3 prose-headings:mb-1 prose-h2:text-primary/80 prose-p:my-1.5 prose-ul:my-1 prose-li:my-0.5 text-xs leading-relaxed">
                 <ReactMarkdown>{analysis.llm_summary}</ReactMarkdown>
               </div>
             </>
