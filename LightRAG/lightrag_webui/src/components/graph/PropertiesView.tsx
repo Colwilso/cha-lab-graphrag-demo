@@ -72,7 +72,9 @@ const SourceRow = ({ title }: { title: string }) => {
 const PropertiesView = () => {
   const { getNode, getEdge } = useLightragGraph()
   const selectedNode = useGraphStore.use.selectedNode()
-  const secondSelectedNode = useGraphStore.use.secondSelectedNode()
+  const selectedNodes = useGraphStore.use.selectedNodes()
+  const activeAnalysis = useGraphStore.use.activeAnalysis()
+  const analysisHistory = useGraphStore.use.analysisHistory()
   const focusedNode = useGraphStore.use.focusedNode()
   const selectedEdge = useGraphStore.use.selectedEdge()
   const focusedEdge = useGraphStore.use.focusedEdge()
@@ -107,7 +109,7 @@ const PropertiesView = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusedNode, selectedNode, focusedEdge, selectedEdge, graphDataVersion, getNode, getEdge])
 
-  if (selectedNode && secondSelectedNode) {
+  if (selectedNodes.length >= 2 || activeAnalysis || analysisHistory.length > 0) {
     return (
       <div className="w-full h-full p-4 text-xs overflow-auto">
         <RelationshipView />

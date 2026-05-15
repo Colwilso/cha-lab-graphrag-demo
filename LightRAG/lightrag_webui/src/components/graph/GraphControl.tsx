@@ -39,8 +39,8 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
   const minEdgeSize = useSettingsStore.use.minEdgeSize()
   const maxEdgeSize = useSettingsStore.use.maxEdgeSize()
   const selectedNode = useGraphStore.use.selectedNode()
-  const secondSelectedNode = useGraphStore.use.secondSelectedNode()
-  const relationshipAnalysis = useGraphStore.use.relationshipAnalysis()
+  const selectedNodes = useGraphStore.use.selectedNodes()
+  const activeAnalysis = useGraphStore.use.activeAnalysis()
   const focusedNode = useGraphStore.use.focusedNode()
   const selectedEdge = useGraphStore.use.selectedEdge()
   const focusedEdge = useGraphStore.use.focusedEdge()
@@ -100,60 +100,67 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
   }, [sigma]);
 
   /**
-   * When relationship analysis completes, reposition visible nodes in a
-   * left-to-right polar layout: source on left, target on right, path
-   * nodes evenly spaced between, neighbors arranged radially around anchors.
+   * When activeAnalysis completes, reposition visible nodes in a
+   * left-to-right layout: input nodes evenly along the horizontal axis,
+   * intermediary Steiner nodes between the input nodes they connect,
+   * neighbors fanning radially around anchors.
    */
   useEffect(() => {
-    if (!relationshipAnalysis || !selectedNode || !secondSelectedNode || !sigmaGraph || !sigma) return
+    if (!activeAnalysis || selectedNodes.length < 2 || !sigmaGraph || !sigma) return
 
     const graph = sigmaGraph
-    if (!graph.hasNode(selectedNode) || !graph.hasNode(secondSelectedNode)) return
+    const steinerNodes: string[] = activeAnalysis.steiner_tree_nodes || []
+    const inputNodes = selectedNodes.filter(n => graph.hasNode(n))
 
-    const paths: string[][] = relationshipAnalysis.shortest_paths || []
-    const primaryPath = paths[0] || [selectedNode, secondSelectedNode]
+    if (inputNodes.length < 2) return
 
-    // Moderate coordinate space -- path spans 10 units, neighbors at radius 3
     const PATH_LENGTH = 10
     const NEIGHBOR_RADIUS = 3
     const MAX_NEIGHBORS = 8
     const CENTER_Y = 0
 
-    // Collect all path nodes across all shortest paths
-    const pathNodeSet = new Set<string>()
-    for (const path of paths) {
-      for (const n of path) pathNodeSet.add(n)
-    }
-
-    // Position primary path nodes left-to-right
-    const pathStep = PATH_LENGTH / Math.max(primaryPath.length - 1, 1)
-    for (let i = 0; i < primaryPath.length; i++) {
-      const nodeId = primaryPath[i]
+    // Position input nodes evenly along horizontal axis
+    const inputStep = PATH_LENGTH / Math.max(inputNodes.length - 1, 1)
+    for (let i = 0; i < inputNodes.length; i++) {
+      const nodeId = inputNodes[i]
       if (graph.hasNode(nodeId)) {
-        graph.setNodeAttribute(nodeId, 'x', i * pathStep)
+        graph.setNodeAttribute(nodeId, 'x', i * inputStep)
         graph.setNodeAttribute(nodeId, 'y', CENTER_Y)
       }
     }
 
-    // Position neighbors in semicircles around the two anchors
-    const positioned = new Set<string>(primaryPath)
+    const positioned = new Set<string>(inputNodes)
 
-    for (const anchor of [selectedNode, secondSelectedNode]) {
+    // Position intermediary Steiner nodes between the input nodes
+    const intermediaries = steinerNodes.filter(n => !inputNodes.includes(n) && graph.hasNode(n))
+    if (intermediaries.length > 0) {
+      const interStep = PATH_LENGTH / (intermediaries.length + 1)
+      for (let i = 0; i < intermediaries.length; i++) {
+        graph.setNodeAttribute(intermediaries[i], 'x', interStep * (i + 1))
+        graph.setNodeAttribute(intermediaries[i], 'y', CENTER_Y + (i % 2 === 0 ? 1.2 : -1.2))
+        positioned.add(intermediaries[i])
+      }
+    }
+
+    // Position neighbors in semicircles around the input nodes (max 8 per anchor)
+    for (let idx = 0; idx < inputNodes.length; idx++) {
+      const anchor = inputNodes[idx]
       if (!graph.hasNode(anchor)) continue
       const anchorX = graph.getNodeAttribute(anchor, 'x') as number
       const neighbors: string[] = []
       try {
         for (const n of graph.neighbors(anchor)) {
-          if (!positioned.has(n) && !pathNodeSet.has(n)) neighbors.push(n)
+          if (!positioned.has(n)) neighbors.push(n)
         }
       } catch { /* ignore */ }
 
       if (neighbors.length === 0) continue
       const visible = neighbors.slice(0, MAX_NEIGHBORS)
 
-      // Left anchor fans above/below on the left side; right anchor on the right
-      const isLeft = anchor === selectedNode
-      const baseAngle = isLeft ? Math.PI : 0
+      // Fan direction based on position
+      const isLeft = idx === 0
+      const isRight = idx === inputNodes.length - 1
+      const baseAngle = isLeft ? Math.PI : isRight ? 0 : Math.PI / 2
       const arcSpread = Math.PI * 0.7
 
       for (let i = 0; i < visible.length; i++) {
@@ -169,31 +176,22 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
       }
     }
 
-    // Position alternate-path nodes slightly offset from the main axis
-    for (const nodeId of pathNodeSet) {
-      if (positioned.has(nodeId)) continue
-      if (!graph.hasNode(nodeId)) continue
-      graph.setNodeAttribute(nodeId, 'x', PATH_LENGTH * 0.3 + Math.random() * PATH_LENGTH * 0.4)
-      graph.setNodeAttribute(nodeId, 'y', CENTER_Y + (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random()))
-      positioned.add(nodeId)
-    }
-
     // Refresh graph rendering, then fit camera to visible nodes
     sigma.refresh()
     setTimeout(() => {
       const camera = sigma.getCamera()
       camera.animate({ x: 0.5, y: 0.5, ratio: 1 }, { duration: 300 })
     }, 50)
-  }, [relationshipAnalysis, selectedNode, secondSelectedNode, sigmaGraph, sigma])
+  }, [activeAnalysis, selectedNodes, sigmaGraph, sigma])
 
-  // Restore layout when exiting two-node mode
+  // Restore layout when activeAnalysis clears
   useEffect(() => {
-    if (!secondSelectedNode && sigmaGraph && sigma) {
+    if (!activeAnalysis && sigmaGraph && sigma) {
       assignLayout()
       sigma.refresh()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [secondSelectedNode])
+  }, [activeAnalysis])
 
   /**
    * When component mount
@@ -226,16 +224,22 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
         const graph = sigma.getGraph()
         if (graph.hasNode(event.node)) {
           const mouseEvent = event.event.original as MouseEvent
-          const currentSelected = useGraphStore.getState().selectedNode
-          const hasAnalysis = useGraphStore.getState().relationshipAnalysis
-          if (mouseEvent.shiftKey && currentSelected && currentSelected !== event.node) {
-            useGraphStore.getState().setSecondSelectedNode(event.node)
-          } else if (hasAnalysis) {
-            // Don't disrupt active analysis on normal click
-            return
+          const state = useGraphStore.getState()
+
+          if (mouseEvent.shiftKey) {
+            // Shift+click: add to multi-select set
+            // If first shift+click, also add the current selectedNode
+            if (state.selectedNode && state.selectedNodes.length === 0) {
+              state.addSelectedNode(state.selectedNode)
+            }
+            state.addSelectedNode(event.node)
           } else {
+            // Normal click: save any active analysis to history, then select
+            if (state.activeAnalysis) {
+              state.saveAnalysisToHistory()
+            }
+            state.clearSelectedNodes()
             setSelectedNode(event.node)
-            useGraphStore.getState().setSecondSelectedNode(null)
             setSelectedEdge(null)
           }
         }
@@ -251,9 +255,12 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
         }
       },
       clickStage: () => {
-        // Don't clear if we have an active relationship analysis
-        if (useGraphStore.getState().relationshipAnalysis) return
-        clearSelection()
+        const state = useGraphStore.getState()
+        if (state.activeAnalysis) {
+          state.saveAnalysisToHistory()
+        } else {
+          clearSelection()
+        }
       }
     }
 
@@ -382,19 +389,14 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           const _focusedNode = focusedNode || selectedNode
           const _focusedEdge = focusedEdge || selectedEdge
 
-          // Two-node analysis mode: show only path + immediate context, hide everything else
-          if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
-            // Build the set of visible nodes: path + direct neighbors of path nodes
-            const pathNodes = new Set<string>([selectedNode, secondSelectedNode])
-            if (relationshipAnalysis?.shortest_paths) {
-              for (const path of relationshipAnalysis.shortest_paths) {
-                for (const n of path) pathNodes.add(n)
-              }
-            }
+          // Multi-node analysis mode with activeAnalysis: show steiner tree + selected nodes, hide rest
+          if (activeAnalysis && selectedNodes.length >= 2 && !focusedNode && !focusedEdge) {
+            const steinerSet = new Set<string>(activeAnalysis.steiner_tree_nodes || [])
+            const selectedSet = new Set<string>(selectedNodes)
 
-            // Only include direct neighbors of the two selected nodes (not all path nodes)
+            // Context: neighbors of selected nodes
             const contextNodes = new Set<string>()
-            for (const anchor of [selectedNode, secondSelectedNode]) {
+            for (const anchor of selectedNodes) {
               if (graph.hasNode(anchor)) {
                 try {
                   for (const neighbor of graph.neighbors(anchor)) {
@@ -404,18 +406,21 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
               }
             }
 
-            if (node === selectedNode) {
+            if (selectedSet.has(node)) {
               newData.highlighted = true
-              newData.borderColor = Constants.nodeBorderColorSelected
-            } else if (node === secondSelectedNode) {
-              newData.highlighted = true
-              newData.borderColor = '#F59E0B'
-            } else if (pathNodes.has(node)) {
+              newData.borderColor = node === selectedNodes[0] ? Constants.nodeBorderColorSelected : '#F59E0B'
+            } else if (steinerSet.has(node)) {
               newData.highlighted = true
             } else if (contextNodes.has(node)) {
               newData.highlighted = false
             } else {
               return { ...data, hidden: true, labelColor }
+            }
+          } else if (selectedNodes.length >= 2 && !activeAnalysis && !focusedNode && !focusedEdge) {
+            // Multi-select without analysis yet: highlight selected, don't hide others
+            if (selectedNodes.includes(node)) {
+              newData.highlighted = true
+              newData.borderColor = node === selectedNodes[0] ? Constants.nodeBorderColorSelected : '#F59E0B'
             }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
@@ -424,7 +429,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
                 if (node === selectedNode) {
                   newData.borderColor = Constants.nodeBorderColorSelected
                 }
-                if (node === secondSelectedNode) {
+                if (selectedNodes.includes(node)) {
                   newData.borderColor = '#F59E0B'
                 }
               }
@@ -488,20 +493,21 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             ? Constants.edgeColorHighlightedDarkTheme
             : Constants.edgeColorHighlightedLightTheme
 
-          // Two-node analysis mode: show only edges connecting visible nodes
-          if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
+          // Multi-node analysis mode: show only edges connecting visible nodes
+          if (activeAnalysis && selectedNodes.length >= 2 && !focusedNode && !focusedEdge) {
             try {
               const [source, target] = graph.extremities(edge)
-              const pathNodes = new Set<string>([selectedNode, secondSelectedNode])
-              if (relationshipAnalysis?.shortest_paths) {
-                for (const path of relationshipAnalysis.shortest_paths) {
-                  for (const n of path) pathNodes.add(n)
-                }
-              }
+              const steinerSet = new Set<string>(activeAnalysis.steiner_tree_nodes || [])
+              const steinerEdges: [string, string][] = activeAnalysis.steiner_tree_edges || []
 
-              // Visible nodes: path + direct neighbors of the two anchors
-              const visibleNodes = new Set<string>(pathNodes)
-              for (const anchor of [selectedNode, secondSelectedNode]) {
+              // Check if this edge is a steiner tree edge
+              const isSteinerEdge = steinerEdges.some(
+                ([s, t]) => (s === source && t === target) || (s === target && t === source)
+              )
+
+              // Visible nodes: steiner + selected + their neighbors
+              const visibleNodes = new Set<string>([...steinerSet, ...selectedNodes])
+              for (const anchor of selectedNodes) {
                 if (graph.hasNode(anchor)) {
                   try {
                     for (const neighbor of graph.neighbors(anchor)) {
@@ -516,9 +522,9 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
 
               if (!sourceVisible || !targetVisible) {
                 newData.hidden = true
-              } else if (pathNodes.has(source) && pathNodes.has(target)) {
+              } else if (isSteinerEdge) {
                 newData.color = '#F59E0B'
-              } else if (pathNodes.has(source) || pathNodes.has(target)) {
+              } else if (steinerSet.has(source) || steinerSet.has(target)) {
                 newData.color = edgeHighlightColor
               }
             } catch { /* ignore */ }
@@ -557,8 +563,8 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
     })
   }, [
     selectedNode,
-    secondSelectedNode,
-    relationshipAnalysis,
+    selectedNodes,
+    activeAnalysis,
     focusedNode,
     selectedEdge,
     focusedEdge,

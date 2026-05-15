@@ -1,9 +1,9 @@
 """
 Routes for the Node Relationship Explorer feature.
 
-Provides an endpoint that analyzes the relationship between two nodes in the
-knowledge graph, including paths, common neighbors, link prediction scores,
-and an optional LLM-generated summary.
+Provides an endpoint that analyzes relationships among multiple nodes in the
+knowledge graph, including Steiner tree structure, shared hubs, link prediction
+scores, and an optional LLM-generated summary.
 """
 
 from typing import Optional
@@ -13,20 +13,15 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
 from lightrag.utils import logger
-from lightrag.kg.graph_analysis import analyze_relationship
+from lightrag.kg.graph_analysis import analyze_multi_node_relationship
 from ..utils_api import get_combined_auth_dependency
 
 
 class RelationshipAnalysisRequest(BaseModel):
-    source_node: str = Field(
+    node_ids: list[str] = Field(
         ...,
-        description="Name of the source entity node",
-        min_length=1,
-    )
-    target_node: str = Field(
-        ...,
-        description="Name of the target entity node",
-        min_length=1,
+        min_length=2,
+        description="List of node IDs to analyze",
     )
     include_llm_summary: bool = Field(
         default=True,
@@ -52,22 +47,20 @@ def create_relationship_routes(rag, api_key: Optional[str] = None):
         "/graph/relationship-analysis", dependencies=[Depends(combined_auth)]
     )
     async def relationship_analysis(request: RelationshipAnalysisRequest):
-        """Analyze the relationship between two nodes in the knowledge graph.
+        """Analyze the relationships among multiple nodes in the knowledge graph.
 
-        Returns graph-structural analysis (paths, common neighbors, link
-        prediction) and an optional LLM-generated natural language summary.
+        Returns graph-structural analysis (Steiner tree, pairwise metrics,
+        shared hubs, link prediction) and an optional LLM-generated summary.
         """
         try:
             graph = await rag.chunk_entity_relation_graph._get_graph()
 
-            analysis = analyze_relationship(
-                graph, request.source_node, request.target_node
-            )
+            analysis = analyze_multi_node_relationship(graph, request.node_ids)
 
             result = {"analysis": analysis, "llm_summary": None}
 
             if request.include_llm_summary:
-                prompt = _build_llm_prompt(analysis)
+                prompt = _build_llm_prompt(analysis, graph)
                 try:
                     summary = await rag.llm_model_func(prompt)
                     result["llm_summary"] = summary
@@ -90,62 +83,102 @@ def create_relationship_routes(rag, api_key: Optional[str] = None):
     return router
 
 
-def _build_llm_prompt(analysis: dict) -> str:
-    """Build the LLM prompt from analysis results."""
-    source = analysis["source"]
-    target = analysis["target"]
+def _build_llm_prompt(analysis: dict, graph) -> str:
+    """Build the LLM prompt from multi-node analysis results.
 
-    source_props = analysis["source_context"].get("properties", {})
-    target_props = analysis["target_context"].get("properties", {})
+    Args:
+        analysis: Result dict from analyze_multi_node_relationship.
+        graph: NetworkX graph for fetching node properties.
+    """
+    node_ids = analysis["node_ids"]
+    connected_nodes = analysis["connected_nodes"]
+    disconnected_nodes = analysis["disconnected_nodes"]
+    missing_nodes = analysis.get("missing_nodes", [])
+    steiner_tree_nodes = analysis["steiner_tree_nodes"]
+    steiner_tree_edges = analysis["steiner_tree_edges"]
+    shared_hubs = analysis["shared_hubs"]
+    link_prediction = analysis["link_prediction"]
 
-    source_type = source_props.get("entity_type", "unknown")
-    source_desc = source_props.get("description", "No description available")
-    target_type = target_props.get("entity_type", "unknown")
-    target_desc = target_props.get("description", "No description available")
+    # Entity descriptions
+    entity_lines = []
+    for node_id in node_ids:
+        if node_id in graph:
+            props = dict(graph.nodes[node_id])
+            entity_type = props.get("entity_type", "unknown")
+            description = props.get("description", "No description available")
+            entity_lines.append(
+                f'- "{node_id}" (type: {entity_type}): {description}'
+            )
+        else:
+            entity_lines.append(f'- "{node_id}": NOT FOUND in graph')
+    entities_str = "\n".join(entity_lines)
 
-    # Direct edge info
-    if analysis["has_direct_edge"]:
-        edge_info = f"There IS a direct edge between them with data: {analysis['direct_edge_data']}"
-    else:
-        edge_info = "There is NO direct edge between them."
-
-    # Paths
-    paths = analysis["shortest_paths"]
-    if paths:
-        paths_str = "\n".join(
-            f"  Path {i+1}: {' -> '.join(p)}" for i, p in enumerate(paths)
+    # Steiner tree structure
+    intermediary_nodes = [
+        n for n in steiner_tree_nodes if n not in connected_nodes
+    ]
+    if steiner_tree_edges:
+        tree_edges_str = "\n".join(
+            f"  {e[0]} -- {e[1]}" for e in steiner_tree_edges
+        )
+        tree_section = (
+            f"Steiner tree edges:\n{tree_edges_str}\n"
+            f"Intermediary nodes (not in input set): "
+            f"{', '.join(intermediary_nodes) if intermediary_nodes else 'None'}"
         )
     else:
-        paths_str = "  No paths found (nodes may be disconnected)."
+        tree_section = "No Steiner tree could be constructed (nodes are disconnected)."
 
-    # Common neighbors
-    common = analysis["common_neighbors"]
-    common_str = ", ".join(common) if common else "None"
+    # Disconnected nodes
+    if disconnected_nodes or missing_nodes:
+        disconnected_str = (
+            f"Disconnected from main group: {', '.join(disconnected_nodes)}\n"
+            f"Missing from graph entirely: {', '.join(missing_nodes)}"
+        )
+    else:
+        disconnected_str = "All nodes are connected."
 
-    # Link prediction
-    lp = analysis["link_prediction"]
-    lp_str = "\n".join(f"  {k}: {v:.4f}" for k, v in lp.items())
+    # Shared hubs
+    if shared_hubs:
+        hubs_str = "\n".join(
+            f"  {h['node']} (neighbor of {h['count']} input nodes)"
+            for h in shared_hubs
+        )
+    else:
+        hubs_str = "  None found"
 
-    prompt = f"""Analyze the relationship between two entities in a knowledge graph.
+    # Link prediction for unconnected pairs
+    if link_prediction:
+        lp_lines = []
+        for pair_key, scores in link_prediction.items():
+            lp_lines.append(f"  {pair_key}:")
+            for algo, score in scores.items():
+                lp_lines.append(f"    {algo}: {score:.4f}")
+        lp_str = "\n".join(lp_lines)
+    else:
+        lp_str = "  All pairs have direct edges (no prediction needed)."
 
-Entity 1: "{source}"
-  Type: {source_type}
-  Description: {source_desc}
+    prompt = f"""Analyze the relationships among the following entities in a knowledge graph.
 
-Entity 2: "{target}"
-  Type: {target_type}
-  Description: {target_desc}
+Entities:
+{entities_str}
 
-Graph Structure:
-- Direct edge: {edge_info}
-- Shortest paths:
-{paths_str}
-- Common neighbors: {common_str}
-- Link prediction scores:
+Connectivity:
+{disconnected_str}
+
+Spanning Structure (Steiner Tree):
+{tree_section}
+
+Shared Hubs (nodes neighboring 3+ of the input entities):
+{hubs_str}
+
+Link Prediction Scores (for pairs WITHOUT a direct edge):
 {lp_str}
 
-Based on the graph data above, provide a 3-5 sentence analysis of the relationship between these two entities. Describe how they are connected, what intermediary entities link them, and how strong the structural relationship appears to be.
-
-IMPORTANT: Do NOT invent or assume relationships that are not supported by the graph data provided above. Only describe what the graph structure shows."""
+Instructions:
+- Describe ONLY what the graph structure shows. Do not add interpretive language or make claims beyond what is evidenced.
+- If nodes are not connected, state this plainly.
+- At the end, include a section titled '## Speculative Connections' -- ONLY if link prediction scores are high (preferential attachment > 500 or adamic_adar > 0.3) for any unconnected pair. In this section, hypothesize what the connection might be based on shared neighbors. Clearly mark this as inference, not fact.
+- Do NOT use filler phrases like 'sophisticated', 'comprehensive', 'at its core', or 'what makes this particularly valuable'."""
 
     return prompt
