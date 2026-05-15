@@ -360,6 +360,9 @@ const useSettingsStoreBase = create<SettingsState>()(
         }
         if (version < 22) {
           state.showLegend = true
+          if (!state.queryLabel) {
+            state.queryLabel = defaultQueryLabel
+          }
         }
         return state
       }
