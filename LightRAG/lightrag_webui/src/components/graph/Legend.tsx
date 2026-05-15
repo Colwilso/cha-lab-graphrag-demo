@@ -5,12 +5,14 @@ import { Card } from '@/components/ui/Card'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 
 const TYPE_DISPLAY_NAMES: Record<string, string> = {
+  'biological process': 'Biological Process',
+  'cell type': 'Cell type',
   biologicalprocess: 'Biological Process',
-  celltype: 'Cell Type',
+  celltype: 'Cell type',
   naturalobject: 'Tissue',
   creature: 'Organism',
-  concept: 'Biological Process',
-  artifact: 'Method',
+  concept: 'Concept',
+  artifact: 'Drug',
   content: 'Data',
   location: 'Tissue',
   event: 'Process',
@@ -70,6 +72,11 @@ const Legend: React.FC<LegendProps> = ({ className }) => {
     setHiddenTypes(new Set())
   }, [setHiddenTypes])
 
+  const handleHideAll = useCallback(() => {
+    const allTypes = Array.from(typeColorMap.keys())
+    setHiddenTypes(new Set(allTypes))
+  }, [typeColorMap, setHiddenTypes])
+
   // Deduplicate types that share the same display name
   const deduplicatedTypes = useMemo(() => {
     if (!typeColorMap || typeColorMap.size === 0) return []
@@ -95,16 +102,22 @@ const Legend: React.FC<LegendProps> = ({ className }) => {
     <Card className={`p-2 max-w-xs ${className}`}>
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-sm font-medium">{t('graphPanel.legend')}</h3>
-        {hiddenTypes.size > 0 && (
+        <div className="flex gap-2">
           <button
             onClick={handleShowAll}
             className="text-[10px] text-muted-foreground hover:text-foreground underline"
           >
-            Show all
+            All
           </button>
-        )}
+          <button
+            onClick={handleHideAll}
+            className="text-[10px] text-muted-foreground hover:text-foreground underline"
+          >
+            None
+          </button>
+        </div>
       </div>
-      <ScrollArea className="max-h-80">
+      <ScrollArea className="max-h-[40vh] overflow-y-auto">
         <div className="flex flex-col gap-0.5">
           {deduplicatedTypes.map(({ displayName, rawTypes, color }) => {
             const isHidden = rawTypes.every(t => hiddenTypes.has(t))

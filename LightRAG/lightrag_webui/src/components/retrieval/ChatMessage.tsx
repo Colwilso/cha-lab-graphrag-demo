@@ -137,6 +137,9 @@ export const ChatMessage = ({
         </CodeHighlight>
       );
     },
+    a: ({ href, children }: { href?: string; children?: ReactNode }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300">{children}</a>
+    ),
     p: ({ children }: { children?: ReactNode }) => <div className="my-2">{children}</div>,
     h1: ({ children }: { children?: ReactNode }) => <h1 className="text-xl font-bold mt-4 mb-2">{children}</h1>,
     h2: ({ children }: { children?: ReactNode }) => <h2 className="text-lg font-bold mt-4 mb-2">{children}</h2>,

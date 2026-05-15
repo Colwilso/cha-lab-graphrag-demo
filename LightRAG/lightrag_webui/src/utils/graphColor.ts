@@ -1,11 +1,17 @@
 const DEFAULT_NODE_COLOR = '#5D6D7E'
 
-const TYPE_SYNONYMS: Record<string, string> = {
+export const TYPE_SYNONYMS: Record<string, string> = {
   unknown: 'unknown',
   未知: 'unknown',
 
   other: 'other',
   其它: 'other',
+
+  'biological process': 'biological process',
+  disease: 'disease',
+  'cell type': 'cell type',
+  phenotype: 'phenotype',
+  pathway: 'pathway',
 
   concept: 'concept',
   object: 'concept',
@@ -20,7 +26,6 @@ const TYPE_SYNONYMS: Record<string, string> = {
   law: 'concept',
   legalclause: 'concept',
   policy: 'concept',
-  disease: 'concept',
   概念: 'concept',
   对象: 'concept',
   类别: 'concept',
@@ -155,7 +160,19 @@ const NODE_TYPE_COLORS: Record<string, string> = {
   artifact: '#4421af',
   naturalobject: '#b2e061',
   other: '#f4d371',
-  unknown: '#b0b0b0'
+  unknown: '#b0b0b0',
+  'biological process': '#e3493b',
+  disease: '#ff6b6b',
+  'cell type': '#bd7ebe',
+  phenotype: '#ff99cc',
+  pathway: '#ff8c00',
+  gene: '#2e8b57',
+  protein: '#00bcd4',
+  molecule: '#9c27b0',
+  tissue: '#4caf50',
+  organism: '#795548',
+  mutation: '#e91e63',
+  drug: '#4421af',
 }
 
 const EXTENDED_COLORS = [

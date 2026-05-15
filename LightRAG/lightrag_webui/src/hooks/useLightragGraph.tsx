@@ -219,6 +219,7 @@ const createSigmaGraph = (rawGraph: RawGraph | null) => {
       x: x,
       y: y,
       size: rawNode.size,
+      entity_type: rawNode.properties?.entity_type || '',
       // for node-border
       borderColor: Constants.nodeBorderColor,
       borderSize: 0.2
@@ -356,14 +357,9 @@ const useLightrangeGraph = () => {
       // Declare a variable to store data promise
       let dataPromise: Promise<{ rawGraph: RawGraph | null; is_truncated: boolean | undefined } | null>;
 
-      // 1. If query label is not empty, use fetchGraph
-      if (currentQueryLabel) {
-        dataPromise = fetchGraph(currentQueryLabel, currentMaxQueryDepth, currentMaxNodes);
-      } else {
-        // 2. If query label is empty, set data to null
-        console.log('Query label is empty, show empty graph')
-        dataPromise = Promise.resolve({ rawGraph: null, is_truncated: false });
-      }
+      // 1. If query label is not empty, use fetchGraph. Treat empty as '*' (show all).
+      const effectiveLabel = currentQueryLabel || '*'
+      dataPromise = fetchGraph(effectiveLabel, currentMaxQueryDepth, currentMaxNodes);
 
       // 3. Process data
       dataPromise.then((result) => {
@@ -742,6 +738,7 @@ const useLightrangeGraph = () => {
             x: x,
             y: y,
             size: nodeSize,
+            entity_type: newNode.properties?.entity_type || '',
             borderColor: Constants.nodeBorderColor,
             borderSize: 0.2
           });

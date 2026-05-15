@@ -81,8 +81,18 @@ export class RawGraph {
   }
 }
 
+export interface AnalysisHistoryEntry {
+  id: string
+  nodeIds: string[]
+  analysis: any
+  timestamp: number
+}
+
 interface GraphState {
   selectedNode: string | null
+  selectedNodes: string[]
+  activeAnalysis: any | null
+  analysisHistory: AnalysisHistoryEntry[]
   focusedNode: string | null
   selectedEdge: string | null
   focusedEdge: string | null
@@ -107,6 +117,12 @@ interface GraphState {
 
   setSigmaInstance: (instance: any) => void
   setSelectedNode: (nodeId: string | null, moveToSelectedNode?: boolean) => void
+  addSelectedNode: (nodeId: string) => void
+  removeSelectedNode: (nodeId: string) => void
+  clearSelectedNodes: () => void
+  setActiveAnalysis: (analysis: any) => void
+  saveAnalysisToHistory: () => void
+  restoreAnalysisFromHistory: (id: string) => void
   setFocusedNode: (nodeId: string | null) => void
   setSelectedEdge: (edgeId: string | null) => void
   setFocusedEdge: (edgeId: string | null) => void
@@ -153,6 +169,9 @@ interface GraphState {
 
 const useGraphStoreBase = create<GraphState>()((set, get) => ({
   selectedNode: null,
+  selectedNodes: [],
+  activeAnalysis: null,
+  analysisHistory: [],
   focusedNode: null,
   selectedEdge: null,
   focusedEdge: null,
@@ -182,12 +201,46 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
   setIsFetching: (isFetching: boolean) => set({ isFetching }),
   setSelectedNode: (nodeId: string | null, moveToSelectedNode?: boolean) =>
     set({ selectedNode: nodeId, moveToSelectedNode }),
+  addSelectedNode: (nodeId: string) => set((state) => {
+    if (state.selectedNodes.includes(nodeId)) return state
+    return { selectedNodes: [...state.selectedNodes, nodeId] }
+  }),
+  removeSelectedNode: (nodeId: string) => set((state) => ({
+    selectedNodes: state.selectedNodes.filter(id => id !== nodeId)
+  })),
+  clearSelectedNodes: () => set({ selectedNodes: [], activeAnalysis: null }),
+  setActiveAnalysis: (analysis: any) => set({ activeAnalysis: analysis }),
+  saveAnalysisToHistory: () => {
+    const state = get()
+    if (!state.activeAnalysis) return
+    const entry: AnalysisHistoryEntry = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      nodeIds: [...state.selectedNodes],
+      analysis: state.activeAnalysis,
+      timestamp: Date.now()
+    }
+    set({
+      analysisHistory: [...state.analysisHistory, entry],
+      activeAnalysis: null
+    })
+  },
+  restoreAnalysisFromHistory: (id: string) => {
+    const state = get()
+    const entry = state.analysisHistory.find(e => e.id === id)
+    if (!entry) return
+    set({
+      activeAnalysis: entry.analysis,
+      selectedNodes: [...entry.nodeIds]
+    })
+  },
   setFocusedNode: (nodeId: string | null) => set({ focusedNode: nodeId }),
   setSelectedEdge: (edgeId: string | null) => set({ selectedEdge: edgeId }),
   setFocusedEdge: (edgeId: string | null) => set({ focusedEdge: edgeId }),
   clearSelection: () =>
     set({
       selectedNode: null,
+      selectedNodes: [],
+      activeAnalysis: null,
       focusedNode: null,
       selectedEdge: null,
       focusedEdge: null
@@ -195,6 +248,9 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
   reset: () => {
     set({
       selectedNode: null,
+      selectedNodes: [],
+      activeAnalysis: null,
+      analysisHistory: [],
       focusedNode: null,
       selectedEdge: null,
       focusedEdge: null,
