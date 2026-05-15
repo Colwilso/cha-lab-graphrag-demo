@@ -6,6 +6,7 @@ import useLightragGraph from '@/hooks/useLightragGraph'
 import { useTranslation } from 'react-i18next'
 import { GitBranchPlus, Scissors, ExternalLink } from 'lucide-react'
 import EditablePropertyRow from './EditablePropertyRow'
+import RelationshipView from './RelationshipPanel'
 
 const PAPER_URLS: Record<string, string> = {
   "Sex-biased islet β cell dysfunction is caused by the MODY MAFA S64F variant by inducing premature aging and senescence in males.": "https://pubmed.ncbi.nlm.nih.gov/34644565/",
@@ -71,6 +72,7 @@ const SourceRow = ({ title }: { title: string }) => {
 const PropertiesView = () => {
   const { getNode, getEdge } = useLightragGraph()
   const selectedNode = useGraphStore.use.selectedNode()
+  const secondSelectedNode = useGraphStore.use.secondSelectedNode()
   const focusedNode = useGraphStore.use.focusedNode()
   const selectedEdge = useGraphStore.use.selectedEdge()
   const focusedEdge = useGraphStore.use.focusedEdge()
@@ -104,6 +106,14 @@ const PropertiesView = () => {
     return { currentElement: null, currentType: null }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusedNode, selectedNode, focusedEdge, selectedEdge, graphDataVersion, getNode, getEdge])
+
+  if (selectedNode && secondSelectedNode) {
+    return (
+      <div className="w-full h-full p-4 text-xs overflow-auto">
+        <RelationshipView />
+      </div>
+    )
+  }
 
   if (!currentElement) {
     return <></>

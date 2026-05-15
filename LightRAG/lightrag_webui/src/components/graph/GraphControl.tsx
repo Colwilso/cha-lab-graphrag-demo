@@ -40,6 +40,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
   const maxEdgeSize = useSettingsStore.use.maxEdgeSize()
   const selectedNode = useGraphStore.use.selectedNode()
   const secondSelectedNode = useGraphStore.use.secondSelectedNode()
+  const relationshipAnalysis = useGraphStore.use.relationshipAnalysis()
   const focusedNode = useGraphStore.use.focusedNode()
   const selectedEdge = useGraphStore.use.selectedEdge()
   const focusedEdge = useGraphStore.use.focusedEdge()
@@ -277,24 +278,29 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           const _focusedNode = focusedNode || selectedNode
           const _focusedEdge = focusedEdge || selectedEdge
 
-          // Two-node comparison mode: highlight both selected + their shared neighbors
+          // Two-node comparison mode: highlight path nodes, dim everything else
           if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
+            // Build set of nodes to highlight
+            const highlightNodes = new Set<string>([selectedNode, secondSelectedNode])
+            if (relationshipAnalysis?.shortest_paths) {
+              for (const path of relationshipAnalysis.shortest_paths) {
+                for (const n of path) highlightNodes.add(n)
+              }
+            }
+            if (relationshipAnalysis?.common_neighbors) {
+              for (const n of relationshipAnalysis.common_neighbors.slice(0, 10)) {
+                highlightNodes.add(n)
+              }
+            }
+
             if (node === selectedNode) {
               newData.highlighted = true
               newData.borderColor = Constants.nodeBorderColorSelected
             } else if (node === secondSelectedNode) {
               newData.highlighted = true
               newData.borderColor = '#F59E0B'
-            } else {
-              try {
-                const isSharedNeighbor =
-                  graph.hasNode(selectedNode) && graph.hasNode(secondSelectedNode) &&
-                  graph.neighbors(selectedNode).includes(node) &&
-                  graph.neighbors(secondSelectedNode).includes(node)
-                if (isSharedNeighbor) {
-                  newData.highlighted = true
-                }
-              } catch { /* ignore */ }
+            } else if (highlightNodes.has(node)) {
+              newData.highlighted = true
             }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
@@ -367,16 +373,20 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             ? Constants.edgeColorHighlightedDarkTheme
             : Constants.edgeColorHighlightedLightTheme
 
-          // Two-node comparison mode: highlight edges connecting the two nodes or their shared neighbors
+          // Two-node comparison mode: highlight edges on the path
           if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
             try {
               const [source, target] = graph.extremities(edge)
-              const involves_selected = source === selectedNode || target === selectedNode
-              const involves_second = source === secondSelectedNode || target === secondSelectedNode
-              if (involves_selected && involves_second) {
+              const pathNodes = new Set<string>([selectedNode, secondSelectedNode])
+              if (relationshipAnalysis?.shortest_paths) {
+                for (const path of relationshipAnalysis.shortest_paths) {
+                  for (const n of path) pathNodes.add(n)
+                }
+              }
+              const sourceOnPath = pathNodes.has(source)
+              const targetOnPath = pathNodes.has(target)
+              if (sourceOnPath && targetOnPath) {
                 newData.color = '#F59E0B'
-              } else if (involves_selected || involves_second) {
-                newData.color = edgeHighlightColor
               }
             } catch { /* ignore */ }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
@@ -415,6 +425,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
   }, [
     selectedNode,
     secondSelectedNode,
+    relationshipAnalysis,
     focusedNode,
     selectedEdge,
     focusedEdge,

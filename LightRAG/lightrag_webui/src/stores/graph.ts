@@ -84,6 +84,7 @@ export class RawGraph {
 interface GraphState {
   selectedNode: string | null
   secondSelectedNode: string | null
+  relationshipAnalysis: any | null
   focusedNode: string | null
   selectedEdge: string | null
   focusedEdge: string | null
@@ -156,6 +157,7 @@ interface GraphState {
 const useGraphStoreBase = create<GraphState>()((set, get) => ({
   selectedNode: null,
   secondSelectedNode: null,
+  relationshipAnalysis: null,
   focusedNode: null,
   selectedEdge: null,
   focusedEdge: null,
@@ -185,7 +187,8 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
   setIsFetching: (isFetching: boolean) => set({ isFetching }),
   setSelectedNode: (nodeId: string | null, moveToSelectedNode?: boolean) =>
     set({ selectedNode: nodeId, moveToSelectedNode }),
-  setSecondSelectedNode: (nodeId: string | null) => set({ secondSelectedNode: nodeId }),
+  setSecondSelectedNode: (nodeId: string | null) => set({ secondSelectedNode: nodeId, relationshipAnalysis: null }),
+  setRelationshipAnalysis: (analysis: any | null) => set({ relationshipAnalysis: analysis }),
   setFocusedNode: (nodeId: string | null) => set({ focusedNode: nodeId }),
   setSelectedEdge: (edgeId: string | null) => set({ selectedEdge: edgeId }),
   setFocusedEdge: (edgeId: string | null) => set({ focusedEdge: edgeId }),
@@ -193,6 +196,7 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
     set({
       selectedNode: null,
       secondSelectedNode: null,
+      relationshipAnalysis: null,
       focusedNode: null,
       selectedEdge: null,
       focusedEdge: null
@@ -201,6 +205,7 @@ const useGraphStoreBase = create<GraphState>()((set, get) => ({
     set({
       selectedNode: null,
       secondSelectedNode: null,
+      relationshipAnalysis: null,
       focusedNode: null,
       selectedEdge: null,
       focusedEdge: null,
