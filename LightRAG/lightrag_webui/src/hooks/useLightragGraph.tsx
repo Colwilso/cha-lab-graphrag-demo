@@ -219,6 +219,7 @@ const createSigmaGraph = (rawGraph: RawGraph | null) => {
       x: x,
       y: y,
       size: rawNode.size,
+      entity_type: rawNode.properties?.entity_type || '',
       // for node-border
       borderColor: Constants.nodeBorderColor,
       borderSize: 0.2
@@ -742,6 +743,7 @@ const useLightrangeGraph = () => {
             x: x,
             y: y,
             size: nodeSize,
+            entity_type: newNode.properties?.entity_type || '',
             borderColor: Constants.nodeBorderColor,
             borderSize: 0.2
           });

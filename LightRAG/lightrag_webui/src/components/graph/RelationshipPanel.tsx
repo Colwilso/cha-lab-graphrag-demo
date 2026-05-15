@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight, Loader2, Link2, Unlink2, X, History, Save } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import Button from '@/components/ui/Button'
 import { useGraphStore, AnalysisHistoryEntry } from '@/stores/graph'
 import { analyzeRelationship, MultiNodeAnalysis } from '@/api/relationship'
@@ -188,10 +189,10 @@ const RelationshipView = () => {
           {Object.keys(analysis.link_prediction).length > 0 && (
             <>
               <h3 className="text-md pl-1 font-bold tracking-wide text-amber-700">Link Prediction</h3>
-              <div className="bg-primary/5 rounded p-2 space-y-1.5">
+              <div className="bg-primary/5 rounded p-2 space-y-1.5 max-h-[200px] overflow-y-auto">
                 {Object.entries(analysis.link_prediction).map(([pairKey, scores]) => (
                   <div key={pairKey}>
-                    <div className="text-muted-foreground mb-0.5">{pairKey}</div>
+                    <div className="text-muted-foreground mb-0.5 font-medium">{pairKey}</div>
                     <div className="pl-2 space-y-0.5">
                       {Object.entries(scores).map(([metric, score]) => (
                         <div key={metric} className="flex justify-between gap-2">
@@ -211,7 +212,7 @@ const RelationshipView = () => {
             <>
               <h3 className="text-md pl-1 font-bold tracking-wide text-violet-700">Analysis</h3>
               <div className="bg-primary/5 rounded p-3 prose prose-sm dark:prose-invert max-w-none prose-headings:text-xs prose-headings:font-bold prose-headings:uppercase prose-headings:tracking-wide prose-headings:mt-3 prose-headings:mb-1 prose-h2:text-primary/80 prose-p:my-1.5 prose-ul:my-1 prose-li:my-0.5 text-xs leading-relaxed">
-                <ReactMarkdown>{analysis.llm_summary}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{analysis.llm_summary}</ReactMarkdown>
               </div>
             </>
           )}
