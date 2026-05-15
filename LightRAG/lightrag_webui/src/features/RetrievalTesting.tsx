@@ -3,7 +3,7 @@ import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { throttle } from '@/lib/utils'
-import { queryText, queryTextStream } from '@/api/lightrag'
+import { queryText, queryTextStream, StreamReference } from '@/api/lightrag'
 import { errorMessage } from '@/lib/utils'
 import { useSettingsStore } from '@/stores/settings'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -13,6 +13,7 @@ import { EraserIcon, SendIcon, CopyIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/utils/clipboard'
+import { findPaperUrl } from '@/utils/paperUrls'
 import type { QueryMode } from '@/api/lightrag'
 
 // Helper function to generate unique IDs with browser compatibility
@@ -371,14 +372,34 @@ export default function RetrievalTesting() {
         // Run query
         if (state.querySettings.stream) {
           let errorMessage = ''
-          await queryTextStream(queryParams, updateAssistantMessage, (error) => {
-            errorMessage += error
-          })
+          let streamRefs: StreamReference[] = []
+          await queryTextStream(
+            queryParams,
+            updateAssistantMessage,
+            (error) => { errorMessage += error },
+            (refs) => { streamRefs = refs }
+          )
           if (errorMessage) {
             if (assistantMessage.content) {
               errorMessage = assistantMessage.content + '\n' + errorMessage
             }
             updateAssistantMessage(errorMessage, true)
+          }
+          // Post-process: replace [N] citation markers with hyperlinks
+          if (streamRefs.length > 0 && assistantMessage.content) {
+            let processed = assistantMessage.content
+            for (const ref of streamRefs) {
+              const url = findPaperUrl(ref.file_path)
+              if (url) {
+                const marker = `[${ref.reference_id}]`
+                const link = `[\\[${ref.reference_id}\\]](${url})`
+                processed = processed.split(marker).join(link)
+              }
+            }
+            if (processed !== assistantMessage.content) {
+              assistantMessage.content = processed
+              updateAssistantMessage('', false)
+            }
           }
         } else {
           const response = await queryText(queryParams)

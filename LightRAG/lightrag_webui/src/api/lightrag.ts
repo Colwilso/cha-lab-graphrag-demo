@@ -513,10 +513,13 @@ export const queryText = async (request: QueryRequest): Promise<QueryResponse> =
   return response.data
 }
 
+export type StreamReference = { reference_id: string; file_path: string }
+
 export const queryTextStream = async (
   request: QueryRequest,
   onChunk: (chunk: string) => void,
-  onError?: (error: string) => void
+  onError?: (error: string) => void,
+  onReferences?: (refs: StreamReference[]) => void
 ) => {
   const apiKey = useSettingsStore.getState().apiKey;
   const token = localStorage.getItem('LIGHTRAG-API-TOKEN');
@@ -589,6 +592,8 @@ export const queryTextStream = async (
                     const parsed = JSON.parse(line);
                     if (parsed.response) {
                       onChunk(parsed.response);
+                    } else if (parsed.references && onReferences) {
+                      onReferences(parsed.references);
                     } else if (parsed.error) {
                       onError?.(parsed.error);
                     }
@@ -606,6 +611,8 @@ export const queryTextStream = async (
                 const parsed = JSON.parse(buffer);
                 if (parsed.response) {
                   onChunk(parsed.response);
+                } else if (parsed.references && onReferences) {
+                  onReferences(parsed.references);
                 } else if (parsed.error) {
                   onError?.(parsed.error);
                 }
@@ -672,6 +679,8 @@ export const queryTextStream = async (
             const parsed = JSON.parse(line);
             if (parsed.response) {
               onChunk(parsed.response);
+            } else if (parsed.references && onReferences) {
+              onReferences(parsed.references);
             } else if (parsed.error && onError) {
               onError(parsed.error);
             }
@@ -689,6 +698,8 @@ export const queryTextStream = async (
         const parsed = JSON.parse(buffer);
         if (parsed.response) {
           onChunk(parsed.response);
+        } else if (parsed.references && onReferences) {
+          onReferences(parsed.references);
         } else if (parsed.error && onError) {
           onError(parsed.error);
         }
