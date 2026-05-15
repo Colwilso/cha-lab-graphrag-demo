@@ -278,18 +278,30 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           const _focusedNode = focusedNode || selectedNode
           const _focusedEdge = focusedEdge || selectedEdge
 
-          // Two-node comparison mode: highlight path nodes, dim everything else
+          // Two-node comparison mode: highlight path + neighborhood, dim the rest
           if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
-            // Build set of nodes to highlight
-            const highlightNodes = new Set<string>([selectedNode, secondSelectedNode])
+            // Core nodes: the two selected + path between them
+            const coreNodes = new Set<string>([selectedNode, secondSelectedNode])
             if (relationshipAnalysis?.shortest_paths) {
               for (const path of relationshipAnalysis.shortest_paths) {
-                for (const n of path) highlightNodes.add(n)
+                for (const n of path) coreNodes.add(n)
               }
             }
             if (relationshipAnalysis?.common_neighbors) {
               for (const n of relationshipAnalysis.common_neighbors.slice(0, 10)) {
-                highlightNodes.add(n)
+                coreNodes.add(n)
+              }
+            }
+
+            // Expand 1 level from core nodes for context
+            const neighborNodes = new Set<string>()
+            for (const coreNode of coreNodes) {
+              if (graph.hasNode(coreNode)) {
+                try {
+                  for (const neighbor of graph.neighbors(coreNode)) {
+                    neighborNodes.add(neighbor)
+                  }
+                } catch { /* ignore */ }
               }
             }
 
@@ -299,8 +311,13 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             } else if (node === secondSelectedNode) {
               newData.highlighted = true
               newData.borderColor = '#F59E0B'
-            } else if (highlightNodes.has(node)) {
+            } else if (coreNodes.has(node)) {
               newData.highlighted = true
+            } else if (neighborNodes.has(node)) {
+              newData.highlighted = true
+            } else {
+              newData.color = Constants.nodeColorDisabled
+              newData.highlighted = false
             }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
@@ -373,20 +390,32 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             ? Constants.edgeColorHighlightedDarkTheme
             : Constants.edgeColorHighlightedLightTheme
 
-          // Two-node comparison mode: highlight edges on the path
+          // Two-node comparison mode: highlight edges connecting path/neighbor nodes
           if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
             try {
               const [source, target] = graph.extremities(edge)
-              const pathNodes = new Set<string>([selectedNode, secondSelectedNode])
+              // Core path nodes
+              const coreNodes = new Set<string>([selectedNode, secondSelectedNode])
               if (relationshipAnalysis?.shortest_paths) {
                 for (const path of relationshipAnalysis.shortest_paths) {
-                  for (const n of path) pathNodes.add(n)
+                  for (const n of path) coreNodes.add(n)
                 }
               }
-              const sourceOnPath = pathNodes.has(source)
-              const targetOnPath = pathNodes.has(target)
-              if (sourceOnPath && targetOnPath) {
+              if (relationshipAnalysis?.common_neighbors) {
+                for (const n of relationshipAnalysis.common_neighbors.slice(0, 10)) {
+                  coreNodes.add(n)
+                }
+              }
+
+              const sourceIsCore = coreNodes.has(source)
+              const targetIsCore = coreNodes.has(target)
+
+              if (sourceIsCore && targetIsCore) {
                 newData.color = '#F59E0B'
+              } else if (sourceIsCore || targetIsCore) {
+                newData.color = edgeHighlightColor
+              } else {
+                newData.hidden = true
               }
             } catch { /* ignore */ }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
