@@ -94,7 +94,7 @@ const useSettingsStoreBase = create<SettingsState>()(
       language: 'en',
       showPropertyPanel: true,
       showNodeSearchBar: true,
-      showLegend: false,
+      showLegend: true,
 
       showNodeLabel: true,
       enableNodeDrag: true,
@@ -244,7 +244,7 @@ const useSettingsStoreBase = create<SettingsState>()(
     {
       name: 'settings-storage',
       storage: createJSONStorage(() => localStorage),
-      version: 21,
+      version: 22,
       migrate: (state: any, version: number) => {
         if (version < 2) {
           state.showEdgeLabel = false
@@ -357,6 +357,9 @@ const useSettingsStoreBase = create<SettingsState>()(
           if (!state.queryLabel) {
             state.queryLabel = defaultQueryLabel
           }
+        }
+        if (version < 22) {
+          state.showLegend = true
         }
         return state
       }
