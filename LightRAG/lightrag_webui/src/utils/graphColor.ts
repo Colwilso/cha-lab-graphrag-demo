@@ -1,6 +1,6 @@
 const DEFAULT_NODE_COLOR = '#5D6D7E'
 
-const TYPE_SYNONYMS: Record<string, string> = {
+export const TYPE_SYNONYMS: Record<string, string> = {
   unknown: 'unknown',
   未知: 'unknown',
 

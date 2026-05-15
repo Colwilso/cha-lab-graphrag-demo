@@ -11,6 +11,7 @@ import * as Constants from '@/lib/constants'
 
 import { useSettingsStore } from '@/stores/settings'
 import { useGraphStore } from '@/stores/graph'
+import { TYPE_SYNONYMS } from '@/utils/graphColor'
 
 const isButtonPressed = (ev: MouseEvent | TouchEvent) => {
   if (ev.type.startsWith('mouse')) {
@@ -374,8 +375,12 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
         // Hide nodes whose entity_type is in hiddenTypes
         if (hiddenTypes.size > 0) {
           const nodeType = graph.getNodeAttribute(node, 'entity_type') as string
-          if (nodeType && hiddenTypes.has(nodeType.toLowerCase())) {
-            return { ...data, hidden: true, labelColor }
+          if (nodeType) {
+            const normalized = nodeType.toLowerCase()
+            const canonicalType = TYPE_SYNONYMS[normalized] || normalized
+            if (hiddenTypes.has(canonicalType) || hiddenTypes.has(normalized)) {
+              return { ...data, hidden: true, labelColor }
+            }
           }
         }
 
@@ -478,7 +483,11 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             const [source, target] = graph.extremities(edge)
             const sourceType = graph.getNodeAttribute(source, 'entity_type') as string
             const targetType = graph.getNodeAttribute(target, 'entity_type') as string
-            if ((sourceType && hiddenTypes.has(sourceType.toLowerCase())) || (targetType && hiddenTypes.has(targetType.toLowerCase()))) {
+            const srcNorm = sourceType?.toLowerCase() || ''
+            const tgtNorm = targetType?.toLowerCase() || ''
+            const srcCanon = TYPE_SYNONYMS[srcNorm] || srcNorm
+            const tgtCanon = TYPE_SYNONYMS[tgtNorm] || tgtNorm
+            if ((sourceType && (hiddenTypes.has(srcCanon) || hiddenTypes.has(srcNorm))) || (targetType && (hiddenTypes.has(tgtCanon) || hiddenTypes.has(tgtNorm)))) {
               return { ...data, hidden: true, labelColor, color: edgeColor }
             }
           } catch (e) { /* ignore */ }
