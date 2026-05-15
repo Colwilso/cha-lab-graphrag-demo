@@ -175,10 +175,17 @@ Shared Hubs (nodes neighboring 3+ of the input entities):
 Link Prediction Scores (for pairs WITHOUT a direct edge):
 {lp_str}
 
-Instructions:
+Instructions for your response format:
+1. Start with "## Synthesis" -- a 2-3 sentence summary of how these entities relate to each other as a group. State the key finding plainly.
+2. Then "## Direct Connections" -- describe each pair that shares a direct edge, citing the edge description from the graph data.
+3. Then "## Structural Role" -- describe any hub or bridging nodes and the overall topology (star, chain, cluster, etc).
+4. Then "## Unconnected Pairs" -- for each pair without a direct edge, state that plainly and include the link prediction scores.
+5. Finally "## Speculative Connections" -- ONLY if link prediction scores are high (preferential attachment > 500 or adamic_adar > 0.3) for any unconnected pair. Hypothesize what the connection might be based on shared neighbors. If no scores meet the threshold, write "No speculative connections warranted."
+
+Rules:
 - Describe ONLY what the graph structure shows. Do not add interpretive language or make claims beyond what is evidenced.
 - If nodes are not connected, state this plainly.
-- At the end, include a section titled '## Speculative Connections' -- ONLY if link prediction scores are high (preferential attachment > 500 or adamic_adar > 0.3) for any unconnected pair. In this section, hypothesize what the connection might be based on shared neighbors. Clearly mark this as inference, not fact.
-- Do NOT use filler phrases like 'sophisticated', 'comprehensive', 'at its core', or 'what makes this particularly valuable'."""
+- Do NOT use filler phrases like 'sophisticated', 'comprehensive', 'at its core', or 'what makes this particularly valuable'.
+- Keep each section concise. Do not repeat information across sections."""
 
     return prompt
