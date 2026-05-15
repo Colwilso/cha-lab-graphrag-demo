@@ -113,28 +113,30 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
     const paths: string[][] = relationshipAnalysis.shortest_paths || []
     const primaryPath = paths[0] || [selectedNode, secondSelectedNode]
 
-    // Use a wide coordinate space so sigma's camera frames it well
-    const WIDTH = 1000
+    // Moderate coordinate space -- path spans 10 units, neighbors at radius 3
+    const PATH_LENGTH = 10
+    const NEIGHBOR_RADIUS = 3
+    const MAX_NEIGHBORS = 8
     const CENTER_Y = 0
 
-    // Position path nodes along a horizontal line
-    const pathStep = WIDTH / Math.max(primaryPath.length - 1, 1)
+    // Collect all path nodes across all shortest paths
     const pathNodeSet = new Set<string>()
     for (const path of paths) {
       for (const n of path) pathNodeSet.add(n)
     }
 
+    // Position primary path nodes left-to-right
+    const pathStep = PATH_LENGTH / Math.max(primaryPath.length - 1, 1)
     for (let i = 0; i < primaryPath.length; i++) {
       const nodeId = primaryPath[i]
       if (graph.hasNode(nodeId)) {
-        graph.setNodeAttribute(nodeId, 'x', -WIDTH / 2 + i * pathStep)
+        graph.setNodeAttribute(nodeId, 'x', i * pathStep)
         graph.setNodeAttribute(nodeId, 'y', CENTER_Y)
       }
     }
 
-    // Position neighbors of each anchor in a semicircle on the outside
+    // Position neighbors in semicircles around the two anchors
     const positioned = new Set<string>(primaryPath)
-    const NEIGHBOR_RADIUS = WIDTH * 0.25
 
     for (const anchor of [selectedNode, secondSelectedNode]) {
       if (!graph.hasNode(anchor)) continue
@@ -147,39 +149,41 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
       } catch { /* ignore */ }
 
       if (neighbors.length === 0) continue
+      const visible = neighbors.slice(0, MAX_NEIGHBORS)
 
-      // Fan neighbors on the outer side (left anchor fans left, right fans right)
+      // Left anchor fans above/below on the left side; right anchor on the right
       const isLeft = anchor === selectedNode
       const baseAngle = isLeft ? Math.PI : 0
-      const arcSpread = Math.min(Math.PI * 0.8, Math.PI)
-      const startAngle = baseAngle - arcSpread / 2
+      const arcSpread = Math.PI * 0.7
 
-      for (let i = 0; i < neighbors.length; i++) {
-        const t = neighbors.length === 1 ? 0.5 : i / (neighbors.length - 1)
-        const angle = startAngle + arcSpread * t
+      for (let i = 0; i < visible.length; i++) {
+        const t = visible.length === 1 ? 0.5 : i / (visible.length - 1)
+        const angle = baseAngle - arcSpread / 2 + arcSpread * t
         const nx = anchorX + Math.cos(angle) * NEIGHBOR_RADIUS
         const ny = CENTER_Y + Math.sin(angle) * NEIGHBOR_RADIUS
-        if (graph.hasNode(neighbors[i])) {
-          graph.setNodeAttribute(neighbors[i], 'x', nx)
-          graph.setNodeAttribute(neighbors[i], 'y', ny)
-          positioned.add(neighbors[i])
+        if (graph.hasNode(visible[i])) {
+          graph.setNodeAttribute(visible[i], 'x', nx)
+          graph.setNodeAttribute(visible[i], 'y', ny)
+          positioned.add(visible[i])
         }
       }
     }
 
-    // Position intermediate path nodes from alternate paths (not on primary)
+    // Position alternate-path nodes slightly offset from the main axis
     for (const nodeId of pathNodeSet) {
       if (positioned.has(nodeId)) continue
       if (!graph.hasNode(nodeId)) continue
-      const offset = (Math.random() - 0.5) * WIDTH * 0.3
-      graph.setNodeAttribute(nodeId, 'x', offset)
-      graph.setNodeAttribute(nodeId, 'y', CENTER_Y + (Math.random() - 0.5) * NEIGHBOR_RADIUS)
+      graph.setNodeAttribute(nodeId, 'x', PATH_LENGTH * 0.3 + Math.random() * PATH_LENGTH * 0.4)
+      graph.setNodeAttribute(nodeId, 'y', CENTER_Y + (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random()))
       positioned.add(nodeId)
     }
 
+    // Refresh graph rendering, then fit camera to visible nodes
     sigma.refresh()
-    // Reset camera to fit the new layout
-    sigma.getCamera().animatedReset({ duration: 300 })
+    setTimeout(() => {
+      const camera = sigma.getCamera()
+      camera.animate({ x: 0.5, y: 0.5, ratio: 1 }, { duration: 300 })
+    }, 50)
   }, [relationshipAnalysis, selectedNode, secondSelectedNode, sigmaGraph, sigma])
 
   // Restore layout when exiting two-node mode
