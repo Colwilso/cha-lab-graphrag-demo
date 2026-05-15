@@ -100,6 +100,88 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
   }, [sigma]);
 
   /**
+   * When relationship analysis completes, reposition visible nodes in a
+   * left-to-right polar layout: source on left, target on right, path
+   * nodes evenly spaced between, neighbors arranged radially around anchors.
+   */
+  useEffect(() => {
+    if (!relationshipAnalysis || !selectedNode || !secondSelectedNode || !sigmaGraph || !sigma) return
+
+    const graph = sigmaGraph
+    if (!graph.hasNode(selectedNode) || !graph.hasNode(secondSelectedNode)) return
+
+    const paths: string[][] = relationshipAnalysis.shortest_paths || []
+    const primaryPath = paths[0] || [selectedNode, secondSelectedNode]
+
+    // Collect all visible nodes
+    const pathNodes = new Set<string>(primaryPath)
+    for (const path of paths) {
+      for (const n of path) pathNodes.add(n)
+    }
+
+    // Position path nodes left-to-right
+    const pathArray = primaryPath
+    const step = 1.0 / Math.max(pathArray.length - 1, 1)
+
+    for (let i = 0; i < pathArray.length; i++) {
+      const nodeId = pathArray[i]
+      if (graph.hasNode(nodeId)) {
+        graph.setNodeAttribute(nodeId, 'x', i * step)
+        graph.setNodeAttribute(nodeId, 'y', 0.5)
+      }
+    }
+
+    // Position neighbors of each anchor in a radial fan
+    const positioned = new Set<string>(pathNodes)
+    for (const anchor of [selectedNode, secondSelectedNode]) {
+      if (!graph.hasNode(anchor)) continue
+      const anchorX = graph.getNodeAttribute(anchor, 'x') as number
+      const anchorY = graph.getNodeAttribute(anchor, 'y') as number
+      const neighbors: string[] = []
+      try {
+        for (const n of graph.neighbors(anchor)) {
+          if (!positioned.has(n)) neighbors.push(n)
+        }
+      } catch { /* ignore */ }
+
+      const angleSpread = Math.PI * 0.8
+      const startAngle = anchor === selectedNode ? Math.PI / 2 + angleSpread / 2 : Math.PI / 2 - angleSpread / 2
+      const radius = 0.15
+
+      for (let i = 0; i < neighbors.length; i++) {
+        const angle = startAngle - (angleSpread * i) / Math.max(neighbors.length - 1, 1)
+        const nx = anchorX + Math.cos(angle) * radius
+        const ny = anchorY + Math.sin(angle) * radius
+        if (graph.hasNode(neighbors[i])) {
+          graph.setNodeAttribute(neighbors[i], 'x', nx)
+          graph.setNodeAttribute(neighbors[i], 'y', ny)
+          positioned.add(neighbors[i])
+        }
+      }
+    }
+
+    // Position remaining path-adjacent nodes that aren't on the primary path
+    for (const pathNode of pathNodes) {
+      if (positioned.has(pathNode)) continue
+      if (!graph.hasNode(pathNode)) continue
+      // Place near a random position along the path
+      graph.setNodeAttribute(pathNode, 'x', 0.3 + Math.random() * 0.4)
+      graph.setNodeAttribute(pathNode, 'y', 0.3 + Math.random() * 0.4)
+    }
+
+    sigma.refresh()
+  }, [relationshipAnalysis, selectedNode, secondSelectedNode, sigmaGraph, sigma])
+
+  // Restore layout when exiting two-node mode
+  useEffect(() => {
+    if (!secondSelectedNode && sigmaGraph && sigma) {
+      assignLayout()
+      sigma.refresh()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [secondSelectedNode])
+
+  /**
    * When component mount
    * => register events
    */
@@ -278,28 +360,23 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           const _focusedNode = focusedNode || selectedNode
           const _focusedEdge = focusedEdge || selectedEdge
 
-          // Two-node comparison mode: highlight path + neighborhood, dim the rest
+          // Two-node analysis mode: show only path + immediate context, hide everything else
           if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
-            // Core nodes: the two selected + path between them
-            const coreNodes = new Set<string>([selectedNode, secondSelectedNode])
+            // Build the set of visible nodes: path + direct neighbors of path nodes
+            const pathNodes = new Set<string>([selectedNode, secondSelectedNode])
             if (relationshipAnalysis?.shortest_paths) {
               for (const path of relationshipAnalysis.shortest_paths) {
-                for (const n of path) coreNodes.add(n)
-              }
-            }
-            if (relationshipAnalysis?.common_neighbors) {
-              for (const n of relationshipAnalysis.common_neighbors.slice(0, 10)) {
-                coreNodes.add(n)
+                for (const n of path) pathNodes.add(n)
               }
             }
 
-            // Expand 1 level from core nodes for context
-            const neighborNodes = new Set<string>()
-            for (const coreNode of coreNodes) {
-              if (graph.hasNode(coreNode)) {
+            // Only include direct neighbors of the two selected nodes (not all path nodes)
+            const contextNodes = new Set<string>()
+            for (const anchor of [selectedNode, secondSelectedNode]) {
+              if (graph.hasNode(anchor)) {
                 try {
-                  for (const neighbor of graph.neighbors(coreNode)) {
-                    neighborNodes.add(neighbor)
+                  for (const neighbor of graph.neighbors(anchor)) {
+                    contextNodes.add(neighbor)
                   }
                 } catch { /* ignore */ }
               }
@@ -311,13 +388,12 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             } else if (node === secondSelectedNode) {
               newData.highlighted = true
               newData.borderColor = '#F59E0B'
-            } else if (coreNodes.has(node)) {
+            } else if (pathNodes.has(node)) {
               newData.highlighted = true
-            } else if (neighborNodes.has(node)) {
-              newData.highlighted = true
-            } else {
-              newData.color = Constants.nodeColorDisabled
+            } else if (contextNodes.has(node)) {
               newData.highlighted = false
+            } else {
+              return { ...data, hidden: true, labelColor }
             }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
@@ -390,32 +466,38 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             ? Constants.edgeColorHighlightedDarkTheme
             : Constants.edgeColorHighlightedLightTheme
 
-          // Two-node comparison mode: highlight edges connecting path/neighbor nodes
+          // Two-node analysis mode: show only edges connecting visible nodes
           if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
             try {
               const [source, target] = graph.extremities(edge)
-              // Core path nodes
-              const coreNodes = new Set<string>([selectedNode, secondSelectedNode])
+              const pathNodes = new Set<string>([selectedNode, secondSelectedNode])
               if (relationshipAnalysis?.shortest_paths) {
                 for (const path of relationshipAnalysis.shortest_paths) {
-                  for (const n of path) coreNodes.add(n)
-                }
-              }
-              if (relationshipAnalysis?.common_neighbors) {
-                for (const n of relationshipAnalysis.common_neighbors.slice(0, 10)) {
-                  coreNodes.add(n)
+                  for (const n of path) pathNodes.add(n)
                 }
               }
 
-              const sourceIsCore = coreNodes.has(source)
-              const targetIsCore = coreNodes.has(target)
+              // Visible nodes: path + direct neighbors of the two anchors
+              const visibleNodes = new Set<string>(pathNodes)
+              for (const anchor of [selectedNode, secondSelectedNode]) {
+                if (graph.hasNode(anchor)) {
+                  try {
+                    for (const neighbor of graph.neighbors(anchor)) {
+                      visibleNodes.add(neighbor)
+                    }
+                  } catch { /* ignore */ }
+                }
+              }
 
-              if (sourceIsCore && targetIsCore) {
-                newData.color = '#F59E0B'
-              } else if (sourceIsCore || targetIsCore) {
-                newData.color = edgeHighlightColor
-              } else {
+              const sourceVisible = visibleNodes.has(source)
+              const targetVisible = visibleNodes.has(target)
+
+              if (!sourceVisible || !targetVisible) {
                 newData.hidden = true
+              } else if (pathNodes.has(source) && pathNodes.has(target)) {
+                newData.color = '#F59E0B'
+              } else if (pathNodes.has(source) || pathNodes.has(target)) {
+                newData.color = edgeHighlightColor
               }
             } catch { /* ignore */ }
           } else if (_focusedNode && graph.hasNode(_focusedNode)) {
