@@ -5,12 +5,14 @@ import { Card } from '@/components/ui/Card'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 
 const TYPE_DISPLAY_NAMES: Record<string, string> = {
+  'biological process': 'Biological Process',
+  'cell type': 'Cell type',
   biologicalprocess: 'Biological Process',
-  celltype: 'Cell Type',
+  celltype: 'Cell type',
   naturalobject: 'Tissue',
   creature: 'Organism',
-  concept: 'Biological Process',
-  artifact: 'Method',
+  concept: 'Concept',
+  artifact: 'Drug',
   content: 'Data',
   location: 'Tissue',
   event: 'Process',
