@@ -9,7 +9,7 @@ export type MultiNodeAnalysis = {
   steiner_tree_nodes: string[]
   steiner_tree_edges: [string, string][]
   pairwise: Record<string, { has_direct_edge: boolean, path_length: number | null, common_neighbor_count: number }>
-  shared_hubs: string[]
+  shared_hubs: Array<{ node: string, count: number }>
   link_prediction: Record<string, Record<string, number>>
   llm_summary: string | null
 }

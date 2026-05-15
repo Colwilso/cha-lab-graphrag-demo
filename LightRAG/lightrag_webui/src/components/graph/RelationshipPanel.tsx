@@ -168,11 +168,11 @@ const RelationshipView = () => {
               <div className="bg-primary/5 rounded p-2 flex flex-wrap gap-1">
                 {analysis.shared_hubs.slice(0, 15).map((hub) => (
                   <span
-                    key={hub}
+                    key={hub.node}
                     className="rounded-full bg-muted px-2 py-0.5 cursor-pointer hover:bg-primary/20"
-                    onClick={() => useGraphStore.getState().setSelectedNode(hub, true)}
+                    onClick={() => useGraphStore.getState().setSelectedNode(hub.node, true)}
                   >
-                    {hub}
+                    {hub.node} <span className="text-muted-foreground">({hub.count})</span>
                   </span>
                 ))}
                 {analysis.shared_hubs.length > 15 && (
