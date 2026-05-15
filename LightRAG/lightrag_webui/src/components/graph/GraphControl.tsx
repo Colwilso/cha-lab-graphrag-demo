@@ -113,45 +113,52 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
     const paths: string[][] = relationshipAnalysis.shortest_paths || []
     const primaryPath = paths[0] || [selectedNode, secondSelectedNode]
 
-    // Collect all visible nodes
-    const pathNodes = new Set<string>(primaryPath)
+    // Use a wide coordinate space so sigma's camera frames it well
+    const WIDTH = 1000
+    const CENTER_Y = 0
+
+    // Position path nodes along a horizontal line
+    const pathStep = WIDTH / Math.max(primaryPath.length - 1, 1)
+    const pathNodeSet = new Set<string>()
     for (const path of paths) {
-      for (const n of path) pathNodes.add(n)
+      for (const n of path) pathNodeSet.add(n)
     }
 
-    // Position path nodes left-to-right
-    const pathArray = primaryPath
-    const step = 1.0 / Math.max(pathArray.length - 1, 1)
-
-    for (let i = 0; i < pathArray.length; i++) {
-      const nodeId = pathArray[i]
+    for (let i = 0; i < primaryPath.length; i++) {
+      const nodeId = primaryPath[i]
       if (graph.hasNode(nodeId)) {
-        graph.setNodeAttribute(nodeId, 'x', i * step)
-        graph.setNodeAttribute(nodeId, 'y', 0.5)
+        graph.setNodeAttribute(nodeId, 'x', -WIDTH / 2 + i * pathStep)
+        graph.setNodeAttribute(nodeId, 'y', CENTER_Y)
       }
     }
 
-    // Position neighbors of each anchor in a radial fan
-    const positioned = new Set<string>(pathNodes)
+    // Position neighbors of each anchor in a semicircle on the outside
+    const positioned = new Set<string>(primaryPath)
+    const NEIGHBOR_RADIUS = WIDTH * 0.25
+
     for (const anchor of [selectedNode, secondSelectedNode]) {
       if (!graph.hasNode(anchor)) continue
       const anchorX = graph.getNodeAttribute(anchor, 'x') as number
-      const anchorY = graph.getNodeAttribute(anchor, 'y') as number
       const neighbors: string[] = []
       try {
         for (const n of graph.neighbors(anchor)) {
-          if (!positioned.has(n)) neighbors.push(n)
+          if (!positioned.has(n) && !pathNodeSet.has(n)) neighbors.push(n)
         }
       } catch { /* ignore */ }
 
-      const angleSpread = Math.PI * 0.8
-      const startAngle = anchor === selectedNode ? Math.PI / 2 + angleSpread / 2 : Math.PI / 2 - angleSpread / 2
-      const radius = 0.15
+      if (neighbors.length === 0) continue
+
+      // Fan neighbors on the outer side (left anchor fans left, right fans right)
+      const isLeft = anchor === selectedNode
+      const baseAngle = isLeft ? Math.PI : 0
+      const arcSpread = Math.min(Math.PI * 0.8, Math.PI)
+      const startAngle = baseAngle - arcSpread / 2
 
       for (let i = 0; i < neighbors.length; i++) {
-        const angle = startAngle - (angleSpread * i) / Math.max(neighbors.length - 1, 1)
-        const nx = anchorX + Math.cos(angle) * radius
-        const ny = anchorY + Math.sin(angle) * radius
+        const t = neighbors.length === 1 ? 0.5 : i / (neighbors.length - 1)
+        const angle = startAngle + arcSpread * t
+        const nx = anchorX + Math.cos(angle) * NEIGHBOR_RADIUS
+        const ny = CENTER_Y + Math.sin(angle) * NEIGHBOR_RADIUS
         if (graph.hasNode(neighbors[i])) {
           graph.setNodeAttribute(neighbors[i], 'x', nx)
           graph.setNodeAttribute(neighbors[i], 'y', ny)
@@ -160,16 +167,19 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
       }
     }
 
-    // Position remaining path-adjacent nodes that aren't on the primary path
-    for (const pathNode of pathNodes) {
-      if (positioned.has(pathNode)) continue
-      if (!graph.hasNode(pathNode)) continue
-      // Place near a random position along the path
-      graph.setNodeAttribute(pathNode, 'x', 0.3 + Math.random() * 0.4)
-      graph.setNodeAttribute(pathNode, 'y', 0.3 + Math.random() * 0.4)
+    // Position intermediate path nodes from alternate paths (not on primary)
+    for (const nodeId of pathNodeSet) {
+      if (positioned.has(nodeId)) continue
+      if (!graph.hasNode(nodeId)) continue
+      const offset = (Math.random() - 0.5) * WIDTH * 0.3
+      graph.setNodeAttribute(nodeId, 'x', offset)
+      graph.setNodeAttribute(nodeId, 'y', CENTER_Y + (Math.random() - 0.5) * NEIGHBOR_RADIUS)
+      positioned.add(nodeId)
     }
 
     sigma.refresh()
+    // Reset camera to fit the new layout
+    sigma.getCamera().animatedReset({ duration: 300 })
   }, [relationshipAnalysis, selectedNode, secondSelectedNode, sigmaGraph, sigma])
 
   // Restore layout when exiting two-node mode
