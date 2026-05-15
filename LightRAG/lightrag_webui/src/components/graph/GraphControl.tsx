@@ -277,13 +277,26 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           const _focusedNode = focusedNode || selectedNode
           const _focusedEdge = focusedEdge || selectedEdge
 
-          // Highlight second selected node with amber border
-          if (secondSelectedNode && node === secondSelectedNode) {
-            newData.highlighted = true
-            newData.borderColor = '#F59E0B'  // amber-500
-          }
-
-          if (_focusedNode && graph.hasNode(_focusedNode)) {
+          // Two-node comparison mode: highlight both selected + their shared neighbors
+          if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
+            if (node === selectedNode) {
+              newData.highlighted = true
+              newData.borderColor = Constants.nodeBorderColorSelected
+            } else if (node === secondSelectedNode) {
+              newData.highlighted = true
+              newData.borderColor = '#F59E0B'
+            } else {
+              try {
+                const isSharedNeighbor =
+                  graph.hasNode(selectedNode) && graph.hasNode(secondSelectedNode) &&
+                  graph.neighbors(selectedNode).includes(node) &&
+                  graph.neighbors(secondSelectedNode).includes(node)
+                if (isSharedNeighbor) {
+                  newData.highlighted = true
+                }
+              } catch { /* ignore */ }
+            }
+          } else if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
               if (node === _focusedNode || graph.neighbors(_focusedNode).includes(node)) {
                 newData.highlighted = true
@@ -291,7 +304,7 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
                   newData.borderColor = Constants.nodeBorderColorSelected
                 }
                 if (node === secondSelectedNode) {
-                  newData.borderColor = '#F59E0B'  // amber-500
+                  newData.borderColor = '#F59E0B'
                 }
               }
             } catch (error) {
@@ -354,7 +367,19 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
             ? Constants.edgeColorHighlightedDarkTheme
             : Constants.edgeColorHighlightedLightTheme
 
-          if (_focusedNode && graph.hasNode(_focusedNode)) {
+          // Two-node comparison mode: highlight edges connecting the two nodes or their shared neighbors
+          if (selectedNode && secondSelectedNode && !focusedNode && !focusedEdge) {
+            try {
+              const [source, target] = graph.extremities(edge)
+              const involves_selected = source === selectedNode || target === selectedNode
+              const involves_second = source === secondSelectedNode || target === secondSelectedNode
+              if (involves_selected && involves_second) {
+                newData.color = '#F59E0B'
+              } else if (involves_selected || involves_second) {
+                newData.color = edgeHighlightColor
+              }
+            } catch { /* ignore */ }
+          } else if (_focusedNode && graph.hasNode(_focusedNode)) {
             try {
               if (hideUnselectedEdges) {
                 if (!graph.extremities(edge).includes(_focusedNode)) {

@@ -5,12 +5,11 @@ import { useSettingsStore } from '@/stores/settings'
 export type RelationshipAnalysis = {
   source: string
   target: string
-  directly_connected: boolean
-  edge_data: Record<string, any> | null
-  shortest_paths: Array<Array<{ id: string; type: string; description: string }>>
-  path_length: number | null
-  common_neighbors: Array<{ id: string; type: string; description: string }>
-  link_prediction_scores: Record<string, number>
+  has_direct_edge: boolean
+  direct_edge_data: Record<string, any> | null
+  shortest_paths: string[][]
+  common_neighbors: string[]
+  link_prediction: Record<string, number>
   llm_summary: string | null
 }
 
@@ -29,5 +28,9 @@ export const analyzeRelationship = async (
     { source_node: sourceNode, target_node: targetNode, include_llm_summary: true },
     { headers }
   )
-  return response.data
+  const data = response.data
+  return {
+    ...data.analysis,
+    llm_summary: data.llm_summary,
+  }
 }
