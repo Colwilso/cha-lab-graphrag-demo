@@ -227,8 +227,12 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
         if (graph.hasNode(event.node)) {
           const mouseEvent = event.event.original as MouseEvent
           const currentSelected = useGraphStore.getState().selectedNode
+          const hasAnalysis = useGraphStore.getState().relationshipAnalysis
           if (mouseEvent.shiftKey && currentSelected && currentSelected !== event.node) {
             useGraphStore.getState().setSecondSelectedNode(event.node)
+          } else if (hasAnalysis) {
+            // Don't disrupt active analysis on normal click
+            return
           } else {
             setSelectedNode(event.node)
             useGraphStore.getState().setSecondSelectedNode(null)
@@ -246,7 +250,11 @@ const GraphControl = ({ disableHoverEffect }: { disableHoverEffect?: boolean }) 
           useGraphStore.getState().incrementGraphDataVersion()
         }
       },
-      clickStage: () => clearSelection()
+      clickStage: () => {
+        // Don't clear if we have an active relationship analysis
+        if (useGraphStore.getState().relationshipAnalysis) return
+        clearSelection()
+      }
     }
 
     // Only add edge event handlers if enableEdgeEvents is true
